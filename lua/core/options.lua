@@ -64,7 +64,7 @@ local init_options  = function()
         -- winbar = "%{%v:lua.require'nvim.utils.nvim.winbar'.eval()%}",
 
         -- @TODO now sure how this is working. need to find out
-        showcmd = false,
+        showcmd = true,
 
         -- stop showing the current line and cursor position in the status bar
         ruler = false,

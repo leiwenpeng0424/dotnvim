@@ -2,25 +2,26 @@ local config = {}
 
 config.feline = function ()
     local lsp = require('feline.providers.lsp')
+    local file = require('feline.providers.file')
     local vi_mode_utils = require('feline.providers.vi_mode')
     local gps = require("nvim-gps")
-
+    
     local force_inactive = {
         filetypes = {},
         buftypes = {},
         bufnames = {}
     }
-
+    
     local winbar_components = {
         active = {{}, {}, {}},
         inactive = {{}, {}, {}},
     }
-
+    
     local components = {
         active = {{}, {}, {}},
         inactive = {{}, {}, {}},
     }
-
+    
     local colors = {
         bg = '#282828',
         black = '#282828',
@@ -36,7 +37,7 @@ config.feline = function ()
         skyblue = '#7daea3',
         red = '#ea6962',
     }
-
+    
     local vi_mode_colors = {
         NORMAL = 'green',
         OP = 'green',
@@ -55,7 +56,7 @@ config.feline = function ()
         TERM = 'green',
         NONE = 'yellow'
     }
-
+    
     local vi_mode_text = {
         NORMAL = '<|',
         OP = '<|',
@@ -74,22 +75,22 @@ config.feline = function ()
         NONE = '<>',
         CONFIRM = '|>'
     }
-
+    
     local buffer_not_empty = function()
-        if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
-            return true
-        end
-        return false
+      if vim.fn.empty(vim.fn.expand('%:t')) ~= 1 then
+        return true
+      end
+      return false
     end
-
+    
     local checkwidth = function()
-        local squeeze_width  = vim.fn.winwidth(0) / 2
-        if squeeze_width > 40 then
-            return true
-        end
-        return false
+      local squeeze_width  = vim.fn.winwidth(0) / 2
+      if squeeze_width > 40 then
+        return true
+      end
+      return false
     end
-
+    
     force_inactive.filetypes = {
         'NvimTree',
         'dbui',
@@ -98,24 +99,24 @@ config.feline = function ()
         'fugitive',
         'fugitiveblame'
     }
-
+    
     force_inactive.buftypes = {
-        'terminal'
+          'terminal'
     }
-
+    
     -- STATUSLINE
     -- LEFT
-
+    
     -- vi-mode
     components.active[1][1] = {
-        provider = ' Ray ',
+        provider = ' Hello ',
         hl = function()
             local val = {}
-
+        
             val.bg = vi_mode_utils.get_mode_color()
             val.fg = 'black'
             val.style = 'bold'
-
+        
             return val
         end,
         right_sep = ' '
@@ -137,16 +138,55 @@ config.feline = function ()
     -- filename
     components.active[1][3] = {
         provider = function()
-            return vim.fn.expand("%:F")
+            return vim.fn.expand("%:.")
         end,
         hl = {
             fg = 'white',
             bg = 'bg',
             style = 'bold'
-        }
+        },
+        right_sep = ' '
+    }
+    -- fileSize
+    components.active[1][4] = {
+        provider = function ()
+            return '['..file.file_size()..']'
+        end,
+        enabled = function() return vim.fn.getfsize(vim.fn.expand('%:F')) > 0 end,
+        hl = {
+            fg = 'skyblue',
+            bg = 'bg',
+            style = 'bold'
+        },
+        right_sep = ' '
+    }
+    -- active lsp clients
+    components.active[1][5] = {
+        provider = function ()
+            if lsp.is_lsp_attached() then
+                return ''
+            else
+                return 'No LSP Clients'
+            end
+        end,
+        hl = {
+            fg = 'cyan',
+            bg = 'bg',
+            style = 'bold'
+        },
+        -- right_sep = ' '
+    }
+    components.active[1][6] = {
+        provider = 'lsp_client_names',
+        hl = {
+            fg = 'cyan',
+            bg = 'bg',
+            style = 'bold'
+        },
+        right_sep = ' '
     }
     -- MID
-
+    
     -- gitBranch
     components.active[2][1] = {
         provider = 'git_branch',
@@ -183,9 +223,9 @@ config.feline = function ()
             style = 'bold'
         },
     }
-
+    
     -- RIGHT
-
+    
     -- fileIcon
     components.active[3][1] = {
         provider = function()
@@ -193,7 +233,7 @@ config.feline = function ()
             local extension = vim.fn.expand('%:e')
             local icon  = require'nvim-web-devicons'.get_icon(filename, extension)
             if icon == nil then
-            icon = ''
+                icon = ''
             end
             return icon
         end,
@@ -203,9 +243,9 @@ config.feline = function ()
             local extension = vim.fn.expand('%:e')
             local icon, name  = require'nvim-web-devicons'.get_icon(filename, extension)
             if icon ~= nil then
-            val.fg = vim.fn.synIDattr(vim.fn.hlID(name), 'fg')
+                val.fg = vim.fn.synIDattr(vim.fn.hlID(name), 'fg')
             else
-            val.fg = 'white'
+                val.fg = 'white'
             end
             val.bg = 'bg'
             val.style = 'bold'
@@ -214,37 +254,26 @@ config.feline = function ()
         right_sep = ' '
     }
     -- fileType
-    components.active[3][2] = {
-        provider = 'file_type',
-        hl = function()
-            local val = {}
-            local filename = vim.fn.expand('%:t')
-            local extension = vim.fn.expand('%:e')
-            local icon, name  = require'nvim-web-devicons'.get_icon(filename, extension)
-            if icon ~= nil then
-            val.fg = vim.fn.synIDattr(vim.fn.hlID(name), 'fg')
-            else
-            val.fg = 'white'
-            end
-            val.bg = 'bg'
-            val.style = 'bold'
-            return val
-        end,
-        right_sep = ' '
-    }
-    -- fileSize
-    components.active[3][3] = {
-        provider = 'file_size',
-        enabled = function() return vim.fn.getfsize(vim.fn.expand('%:t')) > 0 end,
-        hl = {
-            fg = 'skyblue',
-            bg = 'bg',
-            style = 'bold'
-        },
-        right_sep = ' '
-    }
+    -- components.active[3][2] = {
+    --     provider = 'file_type',
+    --     hl = function()
+    --         local val = {}
+    --         local filename = vim.fn.expand('%:t')
+    --         local extension = vim.fn.expand('%:e')
+    --         local icon, name  = require'nvim-web-devicons'.get_icon(filename, extension)
+    --         if icon ~= nil then
+    --             val.fg = vim.fn.synIDattr(vim.fn.hlID(name), 'fg')
+    --         else
+    --             val.fg = 'white'
+    --         end
+    --         val.bg = 'bg'
+    --         val.style = 'bold'
+    --         return val
+    --     end,
+    --     right_sep = ' '
+    -- }
     -- fileFormat
-    components.active[3][4] = {
+    components.active[3][2] = {
         provider = function() return '' .. vim.bo.fileformat:upper() .. '' end,
         hl = {
             fg = 'white',
@@ -254,7 +283,7 @@ config.feline = function ()
         right_sep = ' '
     }
     -- fileEncode
-    components.active[3][5] = {
+    components.active[3][3] = {
         provider = 'file_encoding',
         hl = {
             fg = 'white',
@@ -263,7 +292,7 @@ config.feline = function ()
         },
         right_sep = ' '
     }
-    components.active[3][6] = {
+    components.active[3][4] = {
         provider = 'position',
         hl = {
             fg = 'white',
@@ -273,26 +302,26 @@ config.feline = function ()
         right_sep = ' '
     }
     -- linePercent
-    components.active[3][7] = {
-        provider = 'line_percentage',
-        hl = {
-            fg = 'white',
-            bg = 'bg',
-            style = 'bold'
-        },
-        right_sep = ' '
-    }
+    -- components.active[3][7] = {
+    --     provider = 'line_percentage',
+    --     hl = {
+    --         fg = 'white',
+    --         bg = 'bg',
+    --         style = 'bold'
+    --     },
+    --     right_sep = ' '
+    -- }
     -- scrollBar
-    components.active[3][8] = {
-        provider = 'scroll_bar',
-        hl = {
-            fg = 'yellow',
-            bg = 'bg',
-        },
-    }
-
+    -- components.active[3][8] = {
+    --     provider = 'scroll_bar',
+    --     hl = {
+    --         fg = 'yellow',
+    --         bg = 'bg',
+    --     },
+    -- }
+    
     -- INACTIVE
-
+    
     -- fileType
     components.inactive[1][1] = {
         provider = 'file_type',
@@ -319,10 +348,10 @@ config.feline = function ()
             ' '
         }
     }
-
+    
     -- WINBAR
     -- LEFT
-
+    
     -- nvimGps
     winbar_components.active[1][1] = {
         provider = function() return gps.get_location() end,
@@ -332,11 +361,11 @@ config.feline = function ()
             style = 'bold'
         }
     }
-
+    
     -- MID
-
+    
     -- RIGHT
-
+    
     -- LspName
     winbar_components.active[3][1] = {
         provider = 'lsp_client_names',
@@ -382,9 +411,9 @@ config.feline = function ()
             style = 'bold'
         }
     }
-
+    
     -- INACTIVE
-
+    
     -- fileType
     winbar_components.inactive[1][1] = {
         provider = 'file_type',
@@ -411,7 +440,7 @@ config.feline = function ()
             ' '
         }
     }
-
+    
     require('feline').setup({
         theme = colors,
         default_bg = bg,
@@ -422,10 +451,9 @@ config.feline = function ()
     })
 
     -- require('feline').winbar.setup({
-    --     components = winbar_components,
-    --     force_inactive = force_inactive,
+    --   components = winbar_components,
+    --   force_inactive = force_inactive,
     -- })
-
 end
 
 config.gitsigns = function ()
