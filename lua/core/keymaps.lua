@@ -26,8 +26,16 @@ map("n", "<leader>wq", ":wqa!<CR>", opts) -- write quit all
 map("n", "sv", ":vsp<CR>", opts) -- split vertical
 map("n", "sh", ":sp<CR>", opts) -- split horezontal
 map("n", "sc", "<C-w>", opts) -- close current window
+
 -- <leader> + hjkl 窗口之间跳转
 map("n", "<leader><Left>", "<C-w>h", opts)
 map("n", "<leader><Down>", "<C-w>j", opts)
 map("n", "<leader><Up>", "<C-w>k", opts)
 map("n", "<leader><Right>", "<C-w>l", opts)
+
+-- Neotree key binding
+map('n', '<C-b>', ':NeoTreeShowToggle<CR>', opts)
+
+-- ToggleTerm
+map('n', '<C-t>', '', opts)
+map('n', '<C-t>', ':ToggleTerm<CR>', opts)

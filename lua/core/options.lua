@@ -52,7 +52,7 @@ local init_options  = function()
         -- open completion menu even for single item
         -- do not auto insert items from completion menu
         -- @warning - preview is removed. when it's on, default lsp opens a vertical tab
-        completeopt = 'menuone,noselect',
+        completeopt = 'menu,menuone,noselect',
 
         -- stop showing the current mode
         showmode = false,

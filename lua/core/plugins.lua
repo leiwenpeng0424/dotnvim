@@ -1,4 +1,5 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
+local lsp = vim.lsp
 local use,
     startup = require('packer').use,
             require('packer').startup
@@ -10,13 +11,60 @@ startup({function()
     -- Packer can manage itself
     use { 'wbthomason/packer.nvim' }
     -- lsp-config
-    use { 
+    use {
         'williamboman/nvim-lsp-installer',
         {
             'neovim/nvim-lspconfig',
             config =  function ()
                 local lsp_installer = require('nvim-lsp-installer')
                 local lspconfig = require('lspconfig')
+                local cmp = require('cmp')
+                local cmp_nvim_lsp = require('cmp_nvim_lsp')
+                local lspkind = require('lspkind')
+
+                cmp.setup {
+                    preselect = cmp.PreselectMode.Item,
+                    completion = { 
+                        autocomplete = false
+                    },
+                    view = {            
+                        entries = "custom", -- can be "custom", "wildmenu" or "native"
+                        selection_order = "near_cursor"
+                    },
+                    formatting = {
+                        format = lspkind.cmp_format(),
+                    },
+                    sources = cmp.config.sources({
+                        { name = "nvim_lsp" }
+                    }, {
+                        { name = "buffer" }
+                    }),
+                    window = {
+                        -- completion = cmp.config.window.bordered(),
+                        -- documentation = cmp.config.window.bordered(),
+                    },
+                    mapping = cmp.mapping.preset.insert({
+                        ['<CR>'] = cmp.mapping.confirm({ select = true })
+                    })
+                }
+
+                local capabilities = vim.lsp.protocol.make_client_capabilities()
+                capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+
+                local servers = {
+                    -- rust
+                    'rust_analyzer',
+                    'taplo', -- toml
+                    -- FrontEnd
+                    'tsserver',
+                    'eslint',
+                    'volar',
+                    'tailwindcss',
+                    -- Configuration
+                    'yamlls',
+                    'jsonls',
+                    'dotls'
+                }
 
                 lsp_installer.setup = {
                     automatic_installation = true,
@@ -29,12 +77,24 @@ startup({function()
                     }
                 }
 
-                lspconfig.tsserver.setup { }
-                lspconfig.eslint.setup {}
+                for _, lsp in pairs(servers) do
+                    lspconfig[lsp].setup {
+                        capabilities = capabilities,
+                        flags = {
+                            debounce_text_changes = 150
+                        }
+                    }
+                end
             end,
         }
     }
+    use { 'hrsh7th/cmp-nvim-lsp' }
+    use { 'hrsh7th/cmp-buffer' }
+    use { 'hrsh7th/cmp-path' }
+    use { 'hrsh7th/cmp-cmdline' }
+    use { 'hrsh7th/nvim-cmp' }
     use { 'tpope/vim-fugitive' }
+    use { 'onsails/lspkind.nvim' }
     -- oceanic
     use { 'mhartington/oceanic-next' }
     -- treesitter
@@ -46,10 +106,17 @@ startup({function()
     }
     -- nvim-ts-rainbow
     use { 'p00f/nvim-ts-rainbow' }
+    use { 'kdheepak/lazygit.nvim' }
     -- telescope
     use {
         'nvim-telescope/telescope.nvim',
-        requires = { 'nvim-lua/plenary.nvim' }
+        requires = {
+            'nvim-lua/plenary.nvim',
+            'kdheepak/lazygit.nvim'
+        },
+        config = function ()
+            require("telescope").load_extension("lazygit")
+        end
     }
     -- Lua
     use {
@@ -288,7 +355,18 @@ startup({function()
             vim.g.indentLine_fileTypeExclude = { 'dashboard' }
         end
     }
-    use { 'rust-lang/rust.vim' }
+    use { "rust-lang/rust.vim" }
+    
+    use { 
+        "akinsho/toggleterm.nvim",
+        tag = 'v1.*',
+        config = function()
+            require("toggleterm").setup({
+                direction = 'float'
+            })
+        end
+    }
+
 end,
 config = {
     display = {
