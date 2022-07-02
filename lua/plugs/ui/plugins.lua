@@ -1,4 +1,4 @@
-local ui_config = require("plugs.ui.config")
+local conf = require("plugs.ui.config")
 local plugins = {}
 
 plugins['nvim-telescope/telescope.nvim'] = {
@@ -6,25 +6,25 @@ plugins['nvim-telescope/telescope.nvim'] = {
         'nvim-lua/plenary.nvim',
         'kdheepak/lazygit.nvim'
     },
-    config = ui_config.telescope
+    config = conf.telescope
 }
 
 plugins['SmiteshP/nvim-gps'] = {
     requires = { 'nvim-treesitter/nvim-treesitter' },
-    config = ui_config.nvim_gps
+    config = conf.nvim_gps
 }
 
 plugins['feline-nvim/feline.nvim'] = {
     requires = { 'SmiteshP/nvim-gps', },
-    config = ui_config.feline
+    config = conf.feline
 }
 
 plugins['lewis6991/gitsigns.nvim'] = {
-    config = ui_config.gitsigns
+    config = conf.gitsigns
 }
 
 plugins['lukas-reineke/indent-blankline.nvim'] = {
-    config = ui_config.indent_blank_line,
+    config = conf.indent_blank_line,
     setup = {
         char = "",
         char_highlight_list = {
@@ -44,11 +44,25 @@ plugins['glepnir/dashboard-nvim'] = {
         vim.g.dashboard_default_executive = 'telescope'
         vim.g.indentLine_fileTypeExclude = { 'dashboard' }
     end,
-    config = ui_config.dashboard
+    config = conf.dashboard
 }
 
 plugins['mhartington/oceanic-next'] = {
-    config = ui_config.oceanic
+    config = conf.oceanic
+}
+
+plugins['kyazdani42/nvim-web-devicons'] = {
+    config = conf.devicons
+}
+
+plugins['nvim-neo-tree/neo-tree.nvim'] = {
+    config = conf.neo_tree,
+    branch = "v2.x",
+    requires = {
+        "nvim-lua/plenary.nvim",
+        "kyazdani42/nvim-web-devicons",
+        "MunifTanjim/nui.nvim",
+    },
 }
 
 return plugins
