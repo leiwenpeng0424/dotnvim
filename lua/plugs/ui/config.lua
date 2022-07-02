@@ -1,11 +1,19 @@
 local config = {}
 
+config.telescope = function ()
+    require('telescope').load_extension('lazygit')
+end
+
+config.nvim_gps = function ()
+    -- 
+end
+
 config.feline = function ()
     local lsp = require('feline.providers.lsp')
     local file = require('feline.providers.file')
     local vi_mode_utils = require('feline.providers.vi_mode')
     local gps = require("nvim-gps")
-    
+
     local force_inactive = {
         filetypes = {},
         buftypes = {},
@@ -450,10 +458,6 @@ config.feline = function ()
         force_inactive = force_inactive,
     })
 
-    -- require('feline').winbar.setup({
-    --   components = winbar_components,
-    --   force_inactive = force_inactive,
-    -- })
 end
 
 config.gitsigns = function ()
@@ -502,8 +506,16 @@ config.gitsigns = function ()
     )
 end
 
-config.lspsaga = function ()
-    
+config.indent_blank_line = function ()
+    -- 
+end
+
+config.dashboard = function ()
+    -- 
+end
+
+config.oceanic = function ()
+    -- 
 end
 
 return config
