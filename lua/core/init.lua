@@ -6,6 +6,8 @@ function load()
     pack.ensure_packer_installed()
     pack.load_compile()
 
+    require('core.keymap')
+
     -- vim.cmd([[set background=light]])
     vim.cmd[[colorscheme catppuccin]]
 end
