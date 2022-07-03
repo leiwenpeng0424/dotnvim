@@ -143,39 +143,23 @@ config.feline = function ()
         end,
         right_sep = ' '
     }
-    -- filename
     components.active[1][3] = {
-        provider = function()
-            return vim.fn.expand("%:.")
-        end,
+        provider = 'git_branch',
         hl = {
-            fg = 'white',
-            bg = 'bg',
-            style = 'bold'
-        },
-        right_sep = ' '
-    }
-    -- fileSize
-    components.active[1][4] = {
-        provider = function ()
-            return '['..file.file_size()..']'
-        end,
-        enabled = function() return vim.fn.getfsize(vim.fn.expand('%:F')) > 0 end,
-        hl = {
-            fg = 'skyblue',
+            fg = 'yellow',
             bg = 'bg',
             style = 'bold'
         },
         right_sep = ' '
     }
     -- active lsp clients
-    components.active[1][5] = {
+    components.active[1][4] = {
         provider = function ()
-            if lsp.is_lsp_attached() then
-                return ''
-            else
-                return 'No LSP Clients'
-            end
+            -- if lsp.is_lsp_attached() then
+            --     return ''
+            -- else
+            return ''
+            -- end
         end,
         hl = {
             fg = 'cyan',
@@ -184,7 +168,7 @@ config.feline = function ()
         },
         -- right_sep = ' '
     }
-    components.active[1][6] = {
+    components.active[1][5] = {
         provider = 'lsp_client_names',
         hl = {
             fg = 'cyan',
@@ -196,41 +180,41 @@ config.feline = function ()
     -- MID
     
     -- gitBranch
-    components.active[2][1] = {
-        provider = 'git_branch',
-        hl = {
-            fg = 'yellow',
-            bg = 'bg',
-            style = 'bold'
-        }
-    }
-    -- diffAdd
-    components.active[2][2] = {
-        provider = 'git_diff_added',
-        hl = {
-            fg = 'green',
-            bg = 'bg',
-            style = 'bold'
-        }
-    }
-    -- diffModfified
-    components.active[2][3] = {
-        provider = 'git_diff_changed',
-        hl = {
-            fg = 'orange',
-            bg = 'bg',
-            style = 'bold'
-        }
-    }
-    -- diffRemove
-    components.active[2][4] = {
-        provider = 'git_diff_removed',
-        hl = {
-            fg = 'red',
-            bg = 'bg',
-            style = 'bold'
-        },
-    }
+    -- components.active[2][1] = {
+    --     provider = 'git_branch',
+    --     hl = {
+    --         fg = 'yellow',
+    --         bg = 'bg',
+    --         style = 'bold'
+    --     }
+    -- }
+    -- -- diffAdd
+    -- components.active[2][2] = {
+    --     provider = 'git_diff_added',
+    --     hl = {
+    --         fg = 'green',
+    --         bg = 'bg',
+    --         style = 'bold'
+    --     }
+    -- }
+    -- -- diffModfified
+    -- components.active[2][3] = {
+    --     provider = 'git_diff_changed',
+    --     hl = {
+    --         fg = 'orange',
+    --         bg = 'bg',
+    --         style = 'bold'
+    --     }
+    -- }
+    -- -- diffRemove
+    -- components.active[2][4] = {
+    --     provider = 'git_diff_removed',
+    --     hl = {
+    --         fg = 'red',
+    --         bg = 'bg',
+    --         style = 'bold'
+    --     },
+    -- }
     
     -- RIGHT
     
@@ -261,6 +245,31 @@ config.feline = function ()
         end,
         right_sep = ' '
     }
+    -- filename
+    components.active[3][2] = {
+        provider = function()
+            return vim.fn.expand("%:.")
+        end,
+        hl = {
+            fg = 'white',
+            bg = 'bg',
+            style = 'bold'
+        },
+        right_sep = ' '
+    }
+    -- fileSize
+    components.active[3][3] = {
+        provider = function ()
+            return ' '..file.file_size()..' '
+        end,
+        enabled = function() return vim.fn.getfsize(vim.fn.expand('%:F')) > 0 end,
+        hl = {
+            fg = 'skyblue',
+            bg = 'bg',
+            style = 'bold'
+        },
+        right_sep = ' '
+    }
     -- fileType
     -- components.active[3][2] = {
     --     provider = 'file_type',
@@ -281,7 +290,7 @@ config.feline = function ()
     --     right_sep = ' '
     -- }
     -- fileFormat
-    components.active[3][2] = {
+    components.active[3][4] = {
         provider = function() return '' .. vim.bo.fileformat:upper() .. '' end,
         hl = {
             fg = 'white',
@@ -291,7 +300,7 @@ config.feline = function ()
         right_sep = ' '
     }
     -- fileEncode
-    components.active[3][3] = {
+    components.active[3][5] = {
         provider = 'file_encoding',
         hl = {
             fg = 'white',
@@ -300,7 +309,7 @@ config.feline = function ()
         },
         right_sep = ' '
     }
-    components.active[3][4] = {
+    components.active[3][6] = {
         provider = 'position',
         hl = {
             fg = 'white',
@@ -320,14 +329,13 @@ config.feline = function ()
     --     right_sep = ' '
     -- }
     -- scrollBar
-    -- components.active[3][8] = {
-    --     provider = 'scroll_bar',
-    --     hl = {
-    --         fg = 'yellow',
-    --         bg = 'bg',
-    --     },
-    -- }
-    
+    components.active[3][8] = {
+        provider = 'scroll_bar',
+        hl = {
+            fg = 'yellow',
+            bg = 'bg',
+        },
+    }
     -- INACTIVE
     
     -- fileType
