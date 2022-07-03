@@ -36,7 +36,6 @@ function pack.load_plugins()
     end
 
     local plug_files = get_plugs_list()
-    
     for _, p in ipairs(plug_files) do
         local plugs = require(p:sub(0, #p - 4))
         for repo, conf in pairs(plugs) do
@@ -65,9 +64,7 @@ function pack.load_packer()
     packer.reset()
     local use = packer.use
     pack.load_plugins()
-    use({ 
-        "wbthomason/packer.nvim", opt = false 
-    })
+    use({ "wbthomason/packer.nvim", opt = false })
     for _, repo in ipairs(plug_repos) do
 		use(repo)
 	end

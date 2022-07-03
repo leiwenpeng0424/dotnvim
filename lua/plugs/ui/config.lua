@@ -117,7 +117,9 @@ config.feline = function ()
     
     -- vi-mode
     components.active[1][1] = {
-        provider = ' Hello ',
+        provider = function()
+            return ' ' .. vi_mode_utils.get_vim_mode() .. ' '
+        end,
         hl = function()
             local val = {}
         
@@ -143,6 +145,7 @@ config.feline = function ()
         end,
         right_sep = ' '
     }
+    -- git branch
     components.active[1][3] = {
         provider = 'git_branch',
         hl = {
@@ -172,6 +175,39 @@ config.feline = function ()
         provider = 'lsp_client_names',
         hl = {
             fg = 'cyan',
+            bg = 'bg',
+            style = 'bold'
+        },
+        right_sep = ' '
+    }
+
+    -- diagnostics errors
+    components.active[1][6] = {
+        provider = 'diagnostic_errors',
+        hl = {
+            fg = 'red',
+            bg = 'bg',
+            style = 'bold'
+        },
+        right_sep = ' '
+    }
+
+     -- diagnostics warnings
+    components.active[1][7] = {
+        provider = 'diagnostic_warnings',
+        hl = {
+            fg = 'yellow',
+            bg = 'bg',
+            style = 'bold'
+        },
+        right_sep = ' '
+    }
+
+     -- diagnostics infos
+    components.active[1][8] = {
+        provider = 'diagnostic_info',
+        hl = {
+            fg = 'violet',
             bg = 'bg',
             style = 'bold'
         },
