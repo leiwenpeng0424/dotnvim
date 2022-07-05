@@ -25,3 +25,11 @@ map("n", "<leader>r", "<cmd>Lspsaga rename<CR>", { silent = true })
 -- telescope
 map('n', 'ff', '<cmd>Telescope find_files<CR>', { silent = true })
 map('n', 'fb', '<cmd>Telescope buffers<CR>', { silent = true })
+
+-- barbar
+map('n', '<A-,>', '<cmd>BufferPrevious<CR>', { silent = true })
+map('n', '<A-.>', '<cmd>BufferNext<CR>', { silent = true })
+map('n', '<A-p>', '<cmd>BufferPin<CR>', { silent = true })
+map('n', '<A-c>', '<cmd>BufferClose<CR>', { silent = true })
+map('n', '<A-<>', '<cmd>BufferMovePrevious<CR>', { silent = true })
+map('n', '<A->>', '<cmd>BufferMoveNext<CR>', { silent = true })

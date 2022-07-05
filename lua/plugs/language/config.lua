@@ -24,6 +24,7 @@ end
 config.cmp = function ()
     vim.notify('setup cmp')
     local luasnip = require('luasnip')
+    local cmp_autopairs = require('nvim-autopairs.completion.cmp')
     local cmp = require('cmp')
 
     cmp.setup({
@@ -67,6 +68,11 @@ config.cmp = function ()
             { name = 'cmdline' }
         },
     })
+
+    cmp.event:on(
+        'confirm_done',
+        cmp_autopairs.on_confirm_done()
+    )
 end
 
 config.lspsaga = function ()
@@ -79,6 +85,10 @@ config.lspsaga = function ()
             virtual_text = true,
         },
     })
+end
+
+config.prettier = function ()
+    -- 
 end
 
 

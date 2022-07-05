@@ -18,6 +18,7 @@ plugins['williamboman/nvim-lsp-installer'] = {
 plugins['hrsh7th/nvim-cmp'] = {
     config = conf.cmp
 }
+
 plugins['hrsh7th/cmp-nvim-lsp'] = {}
 plugins['hrsh7th/cmp-buffer'] = {}
 plugins['hrsh7th/cmp-path'] = {}
@@ -29,5 +30,9 @@ plugins['glepnir/lspsaga.nvim'] = {
     config = conf.lspsaga
 }
 
+plugins['prettier/vim-prettier'] = {
+    config = conf.prettier,
+    branch = 'release/0.x'
+}
 
 return plugins

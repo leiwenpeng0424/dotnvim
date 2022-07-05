@@ -736,4 +736,8 @@ config.neo_tree = function ()
     })
 end
 
+config.barbar = function()
+    --
+end
+
 return config

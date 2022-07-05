@@ -65,4 +65,8 @@ plugins['nvim-neo-tree/neo-tree.nvim'] = {
     },
 }
 
+plugins['romgrk/barbar.nvim'] = {
+    config = conf.barbar
+}
+
 return plugins
