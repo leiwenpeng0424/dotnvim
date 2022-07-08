@@ -9,6 +9,7 @@ function load()
     require('core.keymap')
 
     -- vim.cmd([[set background=light]])
+    vim.g.catppuccin_flavour = "mocha"
     vim.cmd[[colorscheme catppuccin]]
 end
 
