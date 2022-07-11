@@ -2,6 +2,13 @@ local config = {}
 
 config.telescope = function ()
     require('telescope').load_extension('lazygit')
+    require('telescope').setup({
+        defaults = {
+            mappings = {
+                
+            }
+        }
+    })
 end
 
 config.nvim_gps = function ()
