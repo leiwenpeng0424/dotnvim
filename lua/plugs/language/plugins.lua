@@ -25,6 +25,21 @@ plugins['hrsh7th/cmp-path'] = {}
 plugins['hrsh7th/cmp-cmdline'] = {}
 plugins['L3MON4D3/LuaSnip'] = {}
 
+plugins['saecki/crates.nvim'] = {
+    event = { "BufRead Cargo.toml" },
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = conf.creates
+}
+
+plugins['David-Kunz/cmp-npm'] = {
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = conf.cmp_npm
+}
+
+plugins['f3fora/cmp-spell'] = {
+    config = conf.cmp_spell
+}
+
 plugins['glepnir/lspsaga.nvim'] = {
     branch = 'main',
     config = conf.lspsaga

@@ -22,12 +22,24 @@ config.nvim_lspconfig = function ()
 end
 
 config.cmp = function ()
-    vim.notify('setup cmp')
     local luasnip = require('luasnip')
     local cmp_autopairs = require('nvim-autopairs.completion.cmp')
     local cmp = require('cmp')
+    local lspkind = require('lspkind')
 
     cmp.setup({
+        formatting = {
+            format = lspkind.cmp_format({
+                mode = "symbol_text",
+                menu = ({
+                  buffer = "[Buffer]",
+                  nvim_lsp = "[LSP]",
+                  luasnip = "[LuaSnip]",
+                  nvim_lua = "[Lua]",
+                  latex_symbols = "[Latex]",
+                })
+              }),
+        },
         snippet = {
             expand = function(args)
               luasnip.lsp_expand(args.body)
@@ -65,7 +77,10 @@ config.cmp = function ()
             { name = 'luasnip' },
             { name = 'path' },
             { name = 'buffer' },
-            { name = 'cmdline' }
+            { name = 'cmdline' },
+            { name = 'npm', keyword_length = 3 },
+            { name = 'crates' },
+            { name = 'spell' }
         },
     })
 
@@ -91,5 +106,17 @@ config.prettier = function ()
     -- 
 end
 
+config.creates = function ()
+    require('creates').setup({})
+end
+
+config.cmp_npm = function ()
+    require('cmp-npm').setup({})
+end
+
+config.cmp_spell = function ()
+    vim.opt.spell = true
+    vim.opt.spelllang = { 'en_us' }
+end
 
 return config

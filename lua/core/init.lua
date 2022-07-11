@@ -7,10 +7,11 @@ function load()
     pack.load_compile()
 
     require('core.keymap')
-
+    require('core.lsp')
     -- vim.cmd([[set background=light]])
-    vim.g.catppuccin_flavour = "mocha"
-    vim.cmd[[colorscheme catppuccin]]
+    -- vim.g.catppuccin_flavour = "mocha"
+    vim.g.tokyonight_style = "storm"
+    vim.cmd[[colorscheme tokyonight]]
 end
 
 load()

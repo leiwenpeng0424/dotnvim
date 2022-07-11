@@ -747,4 +747,92 @@ config.barbar = function()
     --
 end
 
+config.colorizer = function ()
+    require('colorizer').setup({})
+end
+
+config.tokyonight = function ()
+    --
+end
+
+config.shade = function ()
+    require'shade'.setup({
+        overlay_opacity = 50,
+        opacity_step = 1,
+        keys = {
+            brightness_up    = '<C-Up>',
+            brightness_down  = '<C-Down>',
+            toggle           = '<Leader>s',
+        }
+    })
+end
+
+config.lualine = function ()
+    require('lualine').setup {
+      options = {
+        icons_enabled = true,
+        theme = 'tokyonight',
+        component_separators = { left = '', right = ''},
+        section_separators = { left = '', right = ''},
+        disabled_filetypes = {},
+        always_divide_middle = true,
+        globalstatus = false,
+      },
+      sections = {
+        lualine_a = {'mode'},
+        lualine_b = {'branch', 'diff', 'diagnostics'},
+        lualine_c = {'filename'},
+        lualine_x = {'encoding', 'fileformat', 'filetype'},
+        lualine_y = {'progress'},
+        lualine_z = {'location'}
+      },
+      inactive_sections = {
+        lualine_a = {},
+        lualine_b = {},
+        lualine_c = {'filename'},
+        lualine_x = {'location'},
+        lualine_y = {},
+        lualine_z = {}
+      },
+      tabline = {},
+      extensions = {}
+    }
+end
+
+config.treesitter = function ()
+    require('nvim-treesitter.configs').setup({
+        highlight = {
+            enable = true,
+            additional_vim_regex_highlighting = { 'org' },
+        },
+        autotag = {
+            enable = true,
+        },
+        ensure_installed = {
+            'javascript',
+            'typescript',
+            'dockerfile',
+            'query',
+            'bash',
+            'html',
+            'css',
+            'scss',
+            'vim',
+            'php',
+            'go',
+            'python',
+            'lua',
+            'jsdoc',
+            'org',
+            'comment',
+            'hcl',
+            'tsx',
+            'json',
+            'yaml',
+            'toml',
+            'rust'
+        },
+    })
+end
+
 return config
