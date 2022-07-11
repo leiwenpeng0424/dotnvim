@@ -58,6 +58,17 @@ map('n', 'gc','<cmd>Lspsaga code_action<CR>', { silent = true })
 map('v', 'gc','<cmd>Lspsaga range_code_action<CR>', { silent = true })
 map('n', 'gd','<cmd>Lspsaga preview_definition<CR>', { silent = true })
 
+-- move cursor
+map('n', '<leader><Up>', "<cmd><C-w>j", { silent = true })
+map(
+    'n', '<leader><Left>', '<cmd><C-w>h', { silent = true }
+)
+map(
+    'n', '<leader><Right>', '<cmd><C-w>l', { silent = true }
+)
+map(
+    'n', '<leader><Down>', '<cmd><C-w>k', { silent = true }
+)
 -- scroll down hover doc or scroll in definition preview
 map("n", "<C-]>", function() action.smart_scroll_with_saga(1) end, { silent = true })
 -- scroll up hover doc
