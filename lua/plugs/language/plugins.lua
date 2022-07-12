@@ -36,10 +36,6 @@ plugins['David-Kunz/cmp-npm'] = {
     config = conf.cmp_npm
 }
 
-plugins['f3fora/cmp-spell'] = {
-    config = conf.cmp_spell
-}
-
 plugins['glepnir/lspsaga.nvim'] = {
     branch = 'main',
     config = conf.lspsaga
@@ -48,6 +44,10 @@ plugins['glepnir/lspsaga.nvim'] = {
 plugins['prettier/vim-prettier'] = {
     config = conf.prettier,
     branch = 'release/0.x'
+}
+
+plugins['fladson/vim-kitty'] = {
+    config = conf.kitty,
 }
 
 return plugins

@@ -119,4 +119,8 @@ config.cmp_spell = function ()
     vim.opt.spelllang = { 'en_us' }
 end
 
+config.kitty = function ()
+ --   
+end
+
 return config
