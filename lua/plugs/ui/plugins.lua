@@ -32,24 +32,11 @@ plugins['lewis6991/gitsigns.nvim'] = {
 plugins['lukas-reineke/indent-blankline.nvim'] = {
     config = conf.indent_blank_line,
     setup = {
-        char = "",
-        char_highlight_list = {
-            "IndentBlanklineIndent1",
-            "IndentBlanklineIndent2",
-        },
-        space_char_highlight_list = {
-            "IndentBlanklineIndent1",
-            "IndentBlanklineIndent2",
-        },
         show_trailing_blankline_indent = false,
     }
 }
 
 plugins['glepnir/dashboard-nvim'] = {
-    setup = function ()
-        vim.g.dashboard_default_executive = 'telescope'
-        vim.g.indentLine_fileTypeExclude = { 'dashboard' }
-    end,
     config = conf.dashboard
 }
 
