@@ -46,4 +46,14 @@ config.fixcursorhold = function ()
     vim.g.cursorhold_updatetime = 100
 end
 
+config.vim_easy_align = function()
+--
+end
+
+config.window_picker = function()
+	require('window-picker').setup({
+		selection_chars = '1234567890'
+	})
+end
+
 return config

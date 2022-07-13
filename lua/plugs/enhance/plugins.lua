@@ -42,4 +42,13 @@ plugins['antoinemadec/FixCursorHold.nvim'] = {
     config = conf.fixcursorhold
 }
 
+plugins['junegunn/vim-easy-align'] = {
+    config = conf.vim_easy_align
+}
+
+plugins['s1n7ax/nvim-window-picker'] = {
+	tag = 'v1.*',
+	config = conf.window_picker
+}
+
 return plugins
