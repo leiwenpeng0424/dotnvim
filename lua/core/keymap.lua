@@ -9,16 +9,6 @@ map('n', '<Leader>s', ':w<CR>')
 -- Open vertical split
 map('n', '<Leader>v', '<C-w>v')
 
--- Move between slits
-map('n', '<leader><Left>', '<C-w>h')
-map('n', '<leader><Down>', '<C-w>j')
-map('n', '<leader><Up>', '<C-w>k')
-map('n', '<leader><Right>', '<C-w>l')
-map('n', '<leader><Left>', '<C-\\><C-n><C-w>h')
-map('n', '<leader><Right>', '<C-\\><C-n><C-w>l')
-
-map('i', '<leader><Right>', '<c-g>u<Esc>1z=`]a<c-g>u')
-
 -- Down is really the next line
 map('n', 'j', 'gj')
 map('n', 'k', 'gk')
@@ -59,16 +49,10 @@ map('v', 'gc','<cmd>Lspsaga range_code_action<CR>', { silent = true })
 map('n', 'gd','<cmd>Lspsaga preview_definition<CR>', { silent = true })
 
 -- move cursor
-map('n', '<leader><Up>', "<cmd><C-w>j", { silent = true })
-map(
-    'n', '<leader><Left>', '<cmd><C-w>h', { silent = true }
-)
-map(
-    'n', '<leader><Right>', '<cmd><C-w>l', { silent = true }
-)
-map(
-    'n', '<leader><Down>', '<cmd><C-w>k', { silent = true }
-)
+map('n', '<leader><Down>', "<C-w>j", { silent = true })
+map('n', '<leader><Left>', '<C-w>h', { silent = true })
+map('n', '<leader><Right>', '<C-w>l', { silent = true })
+map('n', '<leader><Up>', '<C-w>k', { silent = true })
 -- scroll down hover doc or scroll in definition preview
 map("n", "<C-]>", function() action.smart_scroll_with_saga(1) end, { silent = true })
 -- scroll up hover doc
@@ -100,8 +84,8 @@ map('n', '<F2>', '<Plug>VimspectorToggleConditionalBreakpoint')
 map('n', '<F3>', '<Plug>VimspectorAddFunctionBreakpoint')
 map('n', '<F4>', '<Plug>VimspectorRunToCursor')
 map('n', '<F5>', '<Plug>VimspectorContinue')
-map('n', '<Right>', '<Plug>VimspectorStepOver')
-map('n', '<Up>', '<Plug>VimspectorStepOut')
-map('n', '<Down>', '<Plug>VimspectorStepInto')
+map('n', '<A-Right>', '<Plug>VimspectorStepOver')
+map('n', '<A-Up>', '<Plug>VimspectorStepOut')
+map('n', '<A-Down>', '<Plug>VimspectorStepInto')
 
 
