@@ -6,7 +6,7 @@ config.autopairs = function ()
 end
 
 config.lazygit = function ()
-    
+    --
 end
 
 config.terminal = function()
@@ -30,24 +30,10 @@ config.nerdcommenter = function ()
 end
 
 config.nvim_ts_autotag = function ()
-    require('nvim-ts-autotag').setup({
-
-    })
+    require('nvim-ts-autotag').setup({})
 end
 
 config.vimspector = function ()
-    map('n', '<F1>', '<Plug>VimspectorToggleBreakpoint')
-    map('n', '<F2>', '<Plug>VimspectorToggleConditionalBreakpoint')
-    map('n', '<F3>', '<Plug>VimspectorAddFunctionBreakpoint')
-    map('n', '<F4>', '<Plug>VimspectorRunToCursor')
-    map('n', '<F5>', '<Plug>VimspectorContinue')
-    map('n', '<Right>', '<Plug>VimspectorStepOver')
-    map('n', '<Up>', '<Plug>VimspectorStepOut')
-    map('n', '<Down>', '<Plug>VimspectorStepInto')
-
-
-    -- vim.api.nvim_create_user_command('VimspectorPause', 'vimspector#Pause()', { force = true })
-    -- vim.api.nvim_create_user_command('VimspectorStop', 'vimspector#Stop()', { force = true })
 end
 
 config.impatient = function ()

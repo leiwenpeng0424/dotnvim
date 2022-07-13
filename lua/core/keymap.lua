@@ -7,7 +7,7 @@ map('i', '<c-s>', '<C-o>:w<CR>', { remap = true })
 map('n', '<Leader>s', ':w<CR>')
 
 -- Open vertical split
-map('n', '<Leader>v', '<C-w>v')
+map('n', '<leader>v', '<C-w>v')
 
 -- Down is really the next line
 map('n', 'j', 'gj')
@@ -41,8 +41,8 @@ map('n', '<C-b>', '<cmd>NeoTreeShowToggle<CR>', { silent = true })
 map('n', 'gf', '<cmd>Lspsaga lsp_finder<CR>', { silent = true })
 map("n", "gs", "<cmd>Lspsaga signature_help<CR>", { silent = true })
 map("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
-map('n', "g[", "<cmd>Lspsaga diagnostic_jump_prev<cr>", { silent = true })
-map("n", "g]", "<cmd>Lspsaga diagnostic_jump_next<cr>", { silent = true })
+map('n', "g[", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
+map("n", "g]", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
 map("n", "gr", "<cmd>Lspsaga rename<CR>", { silent = true })
 map('n', 'gc','<cmd>Lspsaga code_action<CR>', { silent = true })
 map('v', 'gc','<cmd>Lspsaga range_code_action<CR>', { silent = true })
@@ -76,7 +76,7 @@ map('n', '<leader>-', '<cmd>:lua NTGlobal["window"]:change_height(+2)<CR>', { si
 map('n', '<leader>+', '<cmd>:lua NTGlobal["window"]:change_height(-2)<CR>', { silent = true })
 
 -- NerdCommeter
-map('n', '<leader>/', '<cmd>:lua NERDCommenterToggle<cr>', { silent = true })
+map('n', '<leader>/', '<cmd>:lua NERDCommenterToggle<CR>', { silent = true })
 
 -- Vimspector
 map('n', '<F1>', '<Plug>VimspectorToggleBreakpoint')

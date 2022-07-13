@@ -1,11 +1,16 @@
 local config = {}
 
 config.telescope = function ()
-    require('telescope').load_extension('lazygit')
-    require('telescope').setup({
+    local tel = require('telescope')
+    local actions = require('telescope.actions')
+    tel.load_extension('lazygit')
+    tel.setup({
         defaults = {
             mappings = {
-                
+                n = {
+                    ["s"] = actions.select_horizontal,
+                    ["S"] = actions.select_vertical
+                }
             }
         }
     })
@@ -558,11 +563,34 @@ config.gitsigns = function ()
 end
 
 config.indent_blank_line = function ()
-    -- 
+    require('indent_blankline').setup({
+        space_char_blankline = ' ',
+        show_current_context = true,
+        char = "",
+        char_highlight_list = {
+            "IndentBlanklineIndent1",
+            "IndentBlanklineIndent2",
+        },
+        space_char_highlight_list = {
+            "IndentBlanklineIndent1",
+            "IndentBlanklineIndent2",
+        },
+        show_current_context_statr = true,
+    })
 end
 
 config.dashboard = function ()
-    -- 
+    vim.g.dashboard_default_executive = 'telescope'
+    vim.g.indentLine_fileTypeExclude = { 'dashboard' }
+    local db = require('dashboard')
+    db.custom_header = {
+        "██╗     ███████╗██╗██╗    ██╗███████╗███╗   ██╗██████╗ ███████╗███╗   ██╗ ██████╗ ",
+        "██║     ██╔════╝██║██║    ██║██╔════╝████╗  ██║██╔══██╗██╔════╝████╗  ██║██╔════╝ ",
+        "██║     █████╗  ██║██║ █╗ ██║█████╗  ██╔██╗ ██║██████╔╝█████╗  ██╔██╗ ██║██║  ███╗",
+        "██║     ██╔══╝  ██║██║███╗██║██╔══╝  ██║╚██╗██║██╔═══╝ ██╔══╝  ██║╚██╗██║██║   ██║",
+        "███████╗███████╗██║╚███╔███╔╝███████╗██║ ╚████║██║     ███████╗██║ ╚████║╚██████╔╝",
+        "╚══════╝╚══════╝╚═╝ ╚══╝╚══╝ ╚══════╝╚═╝  ╚═══╝╚═╝     ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ",
+    }
 end
 
 config.oceanic = function ()
