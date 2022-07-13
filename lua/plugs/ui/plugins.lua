@@ -81,5 +81,12 @@ plugins['nvim-lualine/lualine.nvim'] = {
     }
 }
 
+plugins['norcalli/nvim-colorizer.lua'] = {
+    config = conf.nvim_colorizer
+}
+
+plugins['EdenEast/nightfox.nvim'] = {
+    config = conf.nightfox
+}
 
 return plugins

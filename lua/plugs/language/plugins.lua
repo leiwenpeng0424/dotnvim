@@ -50,4 +50,8 @@ plugins['fladson/vim-kitty'] = {
     config = conf.kitty,
 }
 
+plugins['j-hui/fidget.nvim'] = {
+    config = conf.fidget
+}
+
 return plugins

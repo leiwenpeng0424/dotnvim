@@ -123,4 +123,7 @@ config.kitty = function ()
  --   
 end
 
+config.fidget = function()
+    require('fidget').setup({})
+end
 return config

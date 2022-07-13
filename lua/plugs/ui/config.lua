@@ -567,15 +567,6 @@ config.indent_blank_line = function ()
         space_char_blankline = ' ',
         show_current_context = true,
         char = "",
-        char_highlight_list = {
-            "IndentBlanklineIndent1",
-            "IndentBlanklineIndent2",
-        },
-        space_char_highlight_list = {
-            "IndentBlanklineIndent1",
-            "IndentBlanklineIndent2",
-        },
-        show_current_context_statr = true,
     })
 end
 
@@ -799,7 +790,7 @@ config.lualine = function ()
     require('lualine').setup {
       options = {
         icons_enabled = true,
-        theme = 'tokyonight',
+        theme = 'auto',
         component_separators = { left = '', right = ''},
         section_separators = { left = '', right = ''},
         disabled_filetypes = {},
@@ -861,6 +852,14 @@ config.treesitter = function ()
             'rust'
         },
     })
+end
+
+config.nvim_colorizer = function()
+    require('colorizer').setup({})
+end
+
+config.nightfox = function()
+    --
 end
 
 return config
