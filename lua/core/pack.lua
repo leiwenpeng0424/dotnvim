@@ -82,7 +82,6 @@ function pack.load_compile()
 	vim.cmd([[command! PackerUpdate lua require('packer').update()]])
 	vim.cmd([[command! PackerSync lua require('packer').sync()]])
 	vim.cmd([[command! PackerClean lua require('packer').clean()]])
-	-- vim.cmd([[autocmd User PackerComplete lua require('core.pack').back_compile()]])
 	vim.cmd([[command! PackerStatus lua require('packer').compile() require('packer').status()]])
 end
 

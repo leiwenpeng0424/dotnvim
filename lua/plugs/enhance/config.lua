@@ -56,4 +56,8 @@ config.window_picker = function()
 	})
 end
 
+config.vim_dog = function()
+    --[[ require('') ]]
+end
+
 return config

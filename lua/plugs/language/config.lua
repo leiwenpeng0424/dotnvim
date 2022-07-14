@@ -126,4 +126,9 @@ end
 config.fidget = function()
     require('fidget').setup({})
 end
+
+config.comment = function ()
+    require('Comment').setup({})
+end
+
 return config

@@ -88,4 +88,3 @@ map('n', '<A-Right>', '<Plug>VimspectorStepOver')
 map('n', '<A-Up>', '<Plug>VimspectorStepOut')
 map('n', '<A-Down>', '<Plug>VimspectorStepInto')
 
-

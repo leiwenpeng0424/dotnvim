@@ -22,10 +22,6 @@ plugins['dense-analysis/ale'] = {
     config = conf.ale
 }
 
-plugins['preservim/nerdcommenter'] = {
-    config = conf.nerdcommenter
-}
-
 plugins['windwp/nvim-ts-autotag']  = {
     config = conf.nvim_ts_autotag
 }
@@ -49,6 +45,10 @@ plugins['junegunn/vim-easy-align'] = {
 plugins['s1n7ax/nvim-window-picker'] = {
 	tag = 'v1.*',
 	config = conf.window_picker
+}
+
+plugins['kkoomen/vim-doge'] = {
+    config = conf.vim_dog,
 }
 
 return plugins

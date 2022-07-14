@@ -54,4 +54,8 @@ plugins['j-hui/fidget.nvim'] = {
     config = conf.fidget
 }
 
+plugins['numToStr/Comment.nvim'] = {
+    config = conf.comment
+}
+
 return plugins

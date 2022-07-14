@@ -9,7 +9,7 @@ function load()
     require('core.keymap')
     require('core.lsp')
     vim.cmd([[set background=dark]])
-    -- vim.g.catppuccin_flavour = "mocha"
+    --vim.g.catppuccin_flavour = "mocha"
     --vim.g.tokyonight_style = "night"
     vim.cmd[[colorscheme tokyonight]]
 end
