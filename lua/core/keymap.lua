@@ -75,9 +75,6 @@ map('n', '<leader>t', '<cmd>:lua NTGlobal["terminal"]:toggle()<CR>', { silent = 
 map('n', '<leader>-', '<cmd>:lua NTGlobal["window"]:change_height(+2)<CR>', { silent = true })
 map('n', '<leader>+', '<cmd>:lua NTGlobal["window"]:change_height(-2)<CR>', { silent = true })
 
--- NerdCommeter
-map('n', '<leader>/', '<cmd>:lua NERDCommenterToggle<CR>', { silent = true })
-
 -- Vimspector
 map('n', '<F1>', '<Plug>VimspectorToggleBreakpoint')
 map('n', '<F2>', '<Plug>VimspectorToggleConditionalBreakpoint')
@@ -88,3 +85,14 @@ map('n', '<A-Right>', '<Plug>VimspectorStepOver')
 map('n', '<A-Up>', '<Plug>VimspectorStepOut')
 map('n', '<A-Down>', '<Plug>VimspectorStepInto')
 
+-- lazygit
+map('n', '<leader>gg', '<cmd>LazyGit<CR>', { silent = true })
+
+-- aerial
+map('n', '<leader>a', '<cmd>AerialToggle!<CR>', { silent = true })
+-- Jump forwards/backwards with '{' and '}'
+map('n', '{', '<cmd>AerialPrev<CR>', { silent = true })
+map('n', '}', '<cmd>AerialNext<CR>', { silent = true })
+-- Jump up the tree with '[[' or ']]'
+map('n', '[[', '<cmd>AerialPrevUp<CR>', { silent = true })
+map('n', ']]', '<cmd>AerialNextUp<CR>', { silent = true })

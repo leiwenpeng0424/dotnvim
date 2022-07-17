@@ -11,7 +11,7 @@ function load()
     vim.cmd([[set background=dark]])
     --vim.g.catppuccin_flavour = "mocha"
     --vim.g.tokyonight_style = "night"
-    vim.cmd[[colorscheme tokyonight]]
+    vim.cmd[[colorscheme nightfox]]
 end
 
 load()

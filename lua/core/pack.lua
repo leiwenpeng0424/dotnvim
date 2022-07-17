@@ -39,7 +39,7 @@ function pack.load_plugins()
     for _, p in ipairs(plug_files) do
         local plugs = require(p:sub(0, #p - 4))
         for repo, conf in pairs(plugs) do
-            plug_repos[#plug_repos+1] = vim.tbl_extend('force', { repo }, conf)
+            plug_repos[#plug_repos + 1] = vim.tbl_extend('force', { repo }, conf)
         end
     end
 end
@@ -64,6 +64,8 @@ function pack.load_packer()
     packer.reset()
     local use = packer.use
     pack.load_plugins()
+    -- 首先加载 impatient。
+    use({ "lewis6991/impatient.nvim", opt = false })
     use({ "wbthomason/packer.nvim", opt = false })
     for _, repo in ipairs(plug_repos) do
 		use(repo)

@@ -1,7 +1,6 @@
 local conf = require('plugs.language.config')
 local plugins = {}
 
-
 plugins['tpope/vim-fugitive'] = {}
 plugins['onsails/lspkind.nvim'] = {}
 plugins['catppuccin/nvim'] = { as = 'catppuccin' }
@@ -56,6 +55,20 @@ plugins['j-hui/fidget.nvim'] = {
 
 plugins['numToStr/Comment.nvim'] = {
     config = conf.comment
+}
+
+plugins['folke/trouble.nvim'] = {
+    requires = "kyazdani42/nvim-web-devicons",
+    config = conf.trouble,
+    before = { 'telescope' }
+}
+
+plugins['jose-elias-alvarez/null-ls.nvim'] = {
+    config = conf.null_ls
+}
+
+plugins['simrat39/rust-tools.nvim'] = {
+    conig = conf.rust_tools
 }
 
 return plugins

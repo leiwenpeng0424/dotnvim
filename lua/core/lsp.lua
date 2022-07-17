@@ -15,4 +15,3 @@ vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
     callback = show_diagnostics
 })
 
-

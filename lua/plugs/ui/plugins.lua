@@ -1,36 +1,14 @@
 local conf = require("plugs.ui.config")
 local plugins = {}
 
-plugins['nvim-telescope/telescope.nvim'] = {
-    requires = {
-        'nvim-lua/plenary.nvim',
-        'kdheepak/lazygit.nvim'
-    },
-    config = conf.telescope
-}
-
-plugins['nvim-treesitter/nvim-treesitter'] = {
-    config = conf.treesitter
-}
-
-plugins['SmiteshP/nvim-gps'] = {
-    requires = {
-        'nvim-treesitter/nvim-treesitter'
-    },
-    config = conf.nvim_gps
-}
-
---plugins['feline-nvim/feline.nvim'] = {
---    requires = { 'SmiteshP/nvim-gps', },
---    config = conf.feline
---}
-
 plugins['lewis6991/gitsigns.nvim'] = {
-    config = conf.gitsigns
+    config = conf.gitsigns,
+    event = { "BufReadPost", "BufNewFile" },
 }
 
 plugins['lukas-reineke/indent-blankline.nvim'] = {
     config = conf.indent_blank_line,
+    event = "BufReadPost",
     setup = {
         show_trailing_blankline_indent = false,
     }
@@ -105,5 +83,21 @@ plugins['norcalli/nvim-colorizer.lua'] = {
 plugins['EdenEast/nightfox.nvim'] = {
     config = conf.nightfox
 }
+
+plugins['yamatsum/nvim-nonicons'] = {
+    config = conf.nonicons
+}
+
+plugins['stevearc/aerial.nvim'] = {
+    config = conf.aerial
+}
+
+plugins['karb94/neoscroll.nvim'] = {
+    config = conf.neoscroll,
+    opt = true,
+	event = "BufReadPost",
+}
+
+plugins['folke/lsp-colors.nvim'] = {}
 
 return plugins
