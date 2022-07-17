@@ -1,0 +1,1 @@
+-- windwp/nvim-ts-autotag

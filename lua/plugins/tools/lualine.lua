@@ -1,0 +1,2 @@
+-- nvim-lualine/lualine.nvim
+-- kyazdani42/nvim-web-devicons

@@ -1,0 +1,1 @@
+-- windwp/nvim-autopairs

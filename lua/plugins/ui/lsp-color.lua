@@ -1,0 +1,1 @@
+-- folke/lsp-colors.nvim

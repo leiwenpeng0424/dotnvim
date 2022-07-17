@@ -1,0 +1,1 @@
+-- yamatsum/nvim-nonicons
