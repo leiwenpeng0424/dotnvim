@@ -1,98 +1,65 @@
-local map = require('core.utils').map
-local action = require("lspsaga.action")
+local bind = require('core.utils').keymap_bind
 
--- Map save to Ctrl + S
-map('', '<c-s>', ':w<CR>', { remap = true })
-map('i', '<c-s>', '<C-o>:w<CR>', { remap = true })
-map('n', '<Leader>s', ':w<CR>')
+local mappings = {
+    -- save with ctrl + s, V/I mode
+    ['<c-s>|:w<cr>'] = { mode = '', opts = { noremap = true } },
+    ['<c-s>|<C-o>:w<cr>'] = { mode = 'i', opts = { noremap = true } },
+    ['<Leader>s|:w<cr>'] = { mode = 'n', opts = { remap = true } },
+    -- open vertical split
+    ['<leader>v|<c-w>v'] = { mode = 'n', opts = { remap = true } },
+    -- down is really the next line
+    ['j|gj'] = { mode = 'n', opts = { remap = true } },
+    ['k|gk'] = { mode = 'n', opts = { remap = true } },
+    -- copy to system clipboard
+    ['<c-c>|"+y'] = { mode = 'n', opts = { remap = true } },
+    -- paste from system clipboard with ctrl + v
+    ['<c-v>|<Esc>"+p'] = { mode = 'i', opts = { remap = true } },
+    ['<leader-p>|"0p'] = { mode = 'n', opts = { remap = true } },
+    ['<leader-p>|"0p'] = { mode = 'v', opts = { remap = true } },
+    ['<leader-h>|viw"0p'] = { mode = 'n', opts = { remap = true, nowait = false } },
+    -- move to the end of yanked text after yank and pasted
+    ['p|p`]'] = { mode = 'n', opts = { remap = true } },
+    ['p|p`]'] = { mode = 'v', opts = { remap = true } },
+    ['y|y`]'] = { mode = 'v', opts = { remap = true } },
+    -- Move selected lines up and down
+    ["<c-j>|:m '>+1<cr>gv=gv"] = { mode = 'v', opts = { remap = true } },
+    ["<c-k>|:m '<-2<cr>gv=gv"] = { mode = 'v', opts = { remap = true } },
+    ["_|<c-w>5<"] = { mode = 'n', opts = { remap = true } },
+    ['+|<c-w>5>'] = { mode = 'n', opts = { remap = true } },
+    ['<c-b>|<cmd>NeoTreeShowToggle<cr>'] = { mode = 'n', opts = { remap = true } },
+    -- lspsaga 
+    ['gf|<cmd>Lspsaga lsp_finder<cr>'] = { mode = 'n', opts = { remap = true } },
+    ['gs|<cmd>Lspsaga signature_help<cr>'] = { mode = 'n', opts = { remap = true } },
+    ['g[|<cmd>Lspsaga diagnostic_jump_prev<cr>'] = { mode = 'n', opts = { remap = true } },
+    ['g]|<cmd>Lspsaga diagnostic_jump_next<cr>'] = { mode = 'n', opts = { remap = true } },
+    ['gr|<cmd>Lspsaga rename<cr>'] = { mode = 'n', opts = { remap = true } },
+    ['gc|<cmd>Lspsaga code_action<cr>'] = { mode = 'n', opts = { remap = true } },
+    ['gc|<cmd>Lspsaga range_code_action<cr>'] = { mode = 'n', opts = { remap = true } },
+    ['gd|<cmd>Lspsaga preview_definition<cr>'] = { mode = 'n', opts = { remap = true } },
+    ['K|<cmd>Lspsaga hover_doc<cr>'] = { mode = 'n', opts = { remap = true } },
+    -- move cursor
+    ['<leader><Down>|<c-w>j'] = { mode = 'n', opts = { remap = true } },
+    ['<leader><Left>|<c-w>h'] = { mode = 'n', opts = { remap = true } },
+    ['<leader><Right>|<c-w>l'] = { mode = 'n', opts = { remap = true } },
+    ['<leader><Up>|<c-w>k'] = { mode = 'n', opts = { remap = true } },
+    -- telescope
+    ['<leader>ff|<cmd>Telescope find_files<cr>'] = { mode = 'n', opts = { remap = true } },
+    ['<leader>fb|<cmd>Telescope buffers<cr>'] = { mode = 'n', opts = { remap = true } },
+    -- barbar
+    ['b,|<cmd>BufferPrevious<cr>'] = { mode = 'n', opts = { remap = true } },
+    ['b.|<cmd>BufferNext<cr>'] = { mode = 'n', opts = { remap = true } },
+    ['bp|<cmd>BufferPin<cr>'] = { mode = 'n', opts = { remap = true } },
+    ['bc|<cmd>BufferClose<cr>'] = { mode = 'n', opts = { remap = true } },
+    ['b<|<cmd>BufferMovePrevious<cr>'] = { mode = 'n', opts = { remap = true } },
+    ['b>|<cmd>BufferMoveNext<cr>']  = { mode = 'n', opts = { remap = true } },
+    -- nvim-terminal
+    ['<leader>t|<cmd>:lua NTGlobal["terminal"]:toggle()<cr>'] = { mode = 'n', opts = { remap = true } },
+    ['<leader>-|<cmd>:lua NTGlobal["window"]:change_height(+2)<cr>'] = { mode = 'n', opts = { remap = true } },
+    ['<leader>+|<cmd>:lua NTGlobal["window"]:change_height(-2)<cr>'] = { mode = 'n', opts = { remap = true } },
+    -- lazygit
+    ['gg|<cmd>LazyGit<cr>'] = { mode = 'n', opts = { remap = true } },
+    -- aerial
+    ['<leader>a|<cmd>AerialToggle!<cr>'] = { mode = 'n', opts = { remap = true } },
+}
 
--- Open vertical split
-map('n', '<leader>v', '<C-w>v')
-
--- Down is really the next line
-map('n', 'j', 'gj')
-map('n', 'k', 'gk')
-
--- Copy to system clipboard
-map('v', '<C-c>', '"+y')
--- Paste from system clipboard with Ctrl + v
-map('i', '<C-v>', '<Esc>"+p')
-map('n', '<Leader>p', '"0p')
-map('v', '<Leader>p', '"0p')
-map('n', '<Leader>h', 'viw"0p', { nowait = false })
-
--- Move to the end of yanked text after yank and paste
-map('n', 'p', 'p`]')
-map('v', 'y', 'y`]')
-map('v', 'p', 'p`]')
-
--- Move selected lines up and down
-map('v', '<C-j>', ":m '>+1<CR>gv=gv")
-map('v', '<C-k>', ":m '<-2<CR>gv=gv")
-
--- Resize window with shift + and shift -
-map('n', '_', '<c-w>5<')
-map('n', '+', '<c-w>5>')
-
--- neo-tree
-map('n', '<C-b>', '<cmd>NeoTreeShowToggle<CR>', { silent = true })
-
--- lspsage
-map('n', 'gf', '<cmd>Lspsaga lsp_finder<CR>', { silent = true })
-map("n", "gs", "<cmd>Lspsaga signature_help<CR>", { silent = true })
-map("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
-map('n', "g[", "<cmd>Lspsaga diagnostic_jump_prev<CR>", { silent = true })
-map("n", "g]", "<cmd>Lspsaga diagnostic_jump_next<CR>", { silent = true })
-map("n", "gr", "<cmd>Lspsaga rename<CR>", { silent = true })
-map('n', 'gc','<cmd>Lspsaga code_action<CR>', { silent = true })
-map('v', 'gc','<cmd>Lspsaga range_code_action<CR>', { silent = true })
-map('n', 'gd','<cmd>Lspsaga preview_definition<CR>', { silent = true })
-
--- move cursor
-map('n', '<leader><Down>', "<C-w>j", { silent = true })
-map('n', '<leader><Left>', '<C-w>h', { silent = true })
-map('n', '<leader><Right>', '<C-w>l', { silent = true })
-map('n', '<leader><Up>', '<C-w>k', { silent = true })
--- scroll down hover doc or scroll in definition preview
-map("n", "<C-]>", function() action.smart_scroll_with_saga(1) end, { silent = true })
--- scroll up hover doc
-map("n", "<C-[>", function() action.smart_scroll_with_saga(-1) end, { silent = true })
-
--- telescope
-map('n', '<leader>ff', '<cmd>Telescope find_files<CR>', { silent = true })
-map('n', '<leader>fb', '<cmd>Telescope buffers<CR>', { silent = true })
-
--- barbar
-map('n', 'b,', '<cmd>BufferPrevious<CR>', { silent = true })
-map('n', 'b.', '<cmd>BufferNext<CR>', { silent = true })
-map('n', 'bp', '<cmd>BufferPin<CR>', { silent = true })
-map('n', 'bc', '<cmd>BufferClose<CR>', { silent = true })
-map('n', 'b<', '<cmd>BufferMovePrevious<CR>', { silent = true })
-map('n', 'b>', '<cmd>BufferMoveNext<CR>', { silent = true })
-
--- nvim-terminal
-map('n', '<leader>t', '<cmd>:lua NTGlobal["terminal"]:toggle()<CR>', { silent = true })
-map('n', '<leader>-', '<cmd>:lua NTGlobal["window"]:change_height(+2)<CR>', { silent = true })
-map('n', '<leader>+', '<cmd>:lua NTGlobal["window"]:change_height(-2)<CR>', { silent = true })
-
--- Vimspector
-map('n', '<F1>', '<Plug>VimspectorToggleBreakpoint')
-map('n', '<F2>', '<Plug>VimspectorToggleConditionalBreakpoint')
-map('n', '<F3>', '<Plug>VimspectorAddFunctionBreakpoint')
-map('n', '<F4>', '<Plug>VimspectorRunToCursor')
-map('n', '<F5>', '<Plug>VimspectorContinue')
-map('n', '<A-Right>', '<Plug>VimspectorStepOver')
-map('n', '<A-Up>', '<Plug>VimspectorStepOut')
-map('n', '<A-Down>', '<Plug>VimspectorStepInto')
-
--- lazygit
-map('n', '<leader>gg', '<cmd>LazyGit<CR>', { silent = true })
-
--- aerial
-map('n', '<leader>a', '<cmd>AerialToggle!<CR>', { silent = true })
--- Jump forwards/backwards with '{' and '}'
-map('n', '{', '<cmd>AerialPrev<CR>', { silent = true })
-map('n', '}', '<cmd>AerialNext<CR>', { silent = true })
--- Jump up the tree with '[[' or ']]'
-map('n', '[[', '<cmd>AerialPrevUp<CR>', { silent = true })
-map('n', ']]', '<cmd>AerialNextUp<CR>', { silent = true })
+bind(mappings)
