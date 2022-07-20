@@ -4,12 +4,18 @@ local use = require("packer").use
 
 use({
     "jose-elias-alvarez/null-ls.nvim",
+    as = 'null_ls',
     config = function ()
-        require('null-ls').setup({
+        local null_ls = require("null-ls")
+        null_ls.setup({
             sources = {
-                require("null-ls").builtins.formatting.stylua,
-                require("null-ls").builtins.diagnostics.eslint,
-                require("null-ls").builtins.completion.spell,
+                null_ls.builtins.completion.spell,
+                null_ls.builtins.code_actions.gitsigns,
+                null_ls.builtins.diagnostics.luacheck,
+                null_ls.builtins.diagnostics.shellcheck,
+                null_ls.builtins.formatting.lua_format,
+                null_ls.builtins.formatting.stylua,
+                null_ls.builtins.formatting.nginx_beautifier
             }
         })
     end

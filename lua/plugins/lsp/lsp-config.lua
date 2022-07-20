@@ -31,7 +31,7 @@ use({
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
         end
     
-        vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]
+        vim.cmd[[autocmd! CursorHold,CursorHoldI * lua require("lspsaga.diagnostic").show_line_diagnostics()]]
     
         local capabilities  = vim.lsp.protocol.make_client_capabilities()
 
