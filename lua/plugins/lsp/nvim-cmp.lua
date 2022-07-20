@@ -22,13 +22,11 @@ use({
     "hrsh7th/nvim-cmp",
     as = 'cmp',
     requires = {
-        { "hrsh7th/cmp-nvim-lsp", after = { "cmp" } },
-        { "hrsh7th/cmp-buffer", after = { "cmp" } },
-        { "hrsh7th/cmp-path", after = { "cmp" } },
-        { "hrsh7th/cmp-cmdline", after = { "cmp" }  },
+        { "hrsh7th/cmp-nvim-lsp" },
+        { "hrsh7th/cmp-buffer" },
+        { "hrsh7th/cmp-path" },
     },
     config = function ()
-        -- local luasnip = require('luasnip')
         local cmp = require('cmp')
         local cmp_autopairs = require('nvim-autopairs.completion.cmp')
         local handlers = require("nvim-autopairs.completion.handlers")
@@ -93,7 +91,7 @@ use({
                 ['<C-Space>'] = cmp.mapping.complete(),
                 ['<CR>'] = cmp.mapping.confirm({
                   behavior = cmp.ConfirmBehavior.Replace,
-                  select = true,
+                  select = false,
                 }),
                 ['<Tab>'] = cmp.mapping(function(fallback)
                   if cmp.visible() then

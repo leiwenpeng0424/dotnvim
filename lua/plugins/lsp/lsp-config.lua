@@ -2,27 +2,24 @@
 local use = require("packer").use
 
 use({
+    "williamboman/nvim-lsp-installer",
+    config = function ()
+        local nvim_lsp_installer = require('nvim-lsp-installer')
+        nvim_lsp_installer.setup({
+            automatic_installation = true
+        })
+    end
+})
+
+use( {
+    "stevearc/aerial.nvim",
+    config = function ()
+        require('aerial').setup({})
+    end
+})
+
+use({
     "neovim/nvim-lspconfig",
-    opt = true,
-    requires = {
-        {
-            "williamboman/nvim-lsp-installer",
-            opt = true,
-            config = function ()
-                local nvim_lsp_installer = require('nvim-lsp-installer')
-                nvim_lsp_installer.setup({
-                    automatic_installation = true
-                })
-            end
-        },
-        {
-            "stevearc/aerial.nvim",
-            opt = true,
-            config = function ()
-                require(aerial).setup({})
-            end
-        }
-    },
     config = function ()
         local lsp_installer = require('nvim-lsp-installer')
         local lsp_config = require('lspconfig')
@@ -34,31 +31,16 @@ use({
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
         end
     
-        -- diagnostics in message line 
-        function PrintDiagnostics(opts, bufnr, line_nr, client_id)
-          bufnr = bufnr or 0
-          line_nr = line_nr or (vim.api.nvim_win_get_cursor(0)[1] - 1)
-          opts = opts or {['lnum'] = line_nr}
-    
-          local line_diagnostics = vim.diagnostic.get(bufnr, opts)
-          if vim.tbl_isempty(line_diagnostics) then return end
-    
-          local diagnostic_message = ""
-          for i, diagnostic in ipairs(line_diagnostics) do
-            diagnostic_message = diagnostic_message .. string.format("%d: %s", i, diagnostic.message or "")
-            print(diagnostic_message)
-            if i ~= #line_diagnostics then
-              diagnostic_message = diagnostic_message .. "\n"
-            end
-          end
-          vim.api.nvim_echo({{diagnostic_message, "Normal"}}, false, {})
-        end
-    
-        vim.o.updatetime = 250
-        vim.cmd [[autocmd! CursorHold * lua PrintDiagnostics()]]
         vim.cmd [[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false, scope="cursor"})]]
     
         local capabilities  = vim.lsp.protocol.make_client_capabilities()
+
+        local cmp = pcall(require, 'cmp_nvim_lsp');
+
+        if not cmp then
+            vim.cmd([[packadd cmp-nvim-lsp]])
+        end
+
         capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
     
         function on_attach(client, bufnr)

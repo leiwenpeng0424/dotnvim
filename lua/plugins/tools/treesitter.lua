@@ -4,6 +4,7 @@ local use = require("packer").use
 
 use({
     "nvim-treesitter/nvim-treesitter",
+    run = ':TSUpdate',
     config = function ()
         require('nvim-treesitter.configs').setup({
             highlight = {
@@ -13,7 +14,7 @@ use({
             autotag = {
                 enable = true,
             },
-            ensure_installed = {
+            ensure_installed  = {
                 'javascript',
                 'typescript',
                 'dockerfile',
