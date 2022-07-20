@@ -8,7 +8,6 @@ function load()
     pack.load_compile()
 
     require('core.keymap')
-    require('core.lsp')
 
     vim.cmd([[set background=dark]])
     vim.cmd[[colorscheme nightfox]]

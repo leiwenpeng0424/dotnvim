@@ -149,7 +149,6 @@ config.cmp = function ()
     local luasnip = require('luasnip')
     local cmp_autopairs = require('nvim-autopairs.completion.cmp')
     local cmp = require('cmp')
-    local lspkind = require('lspkind')
 
     cmp.setup({
         formatting = {

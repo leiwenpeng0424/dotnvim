@@ -1,1 +1,0 @@
--- stevearc/aerial.nvim

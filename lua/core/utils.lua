@@ -1,3 +1,5 @@
+local fn = vim.fn
+local paths = require("core.global").paths
 local M = {}
 
 function M.keymap_bind(mappings)
@@ -17,6 +19,21 @@ end
 function M.set_options(options)
     for name, value in pairs(options) do
         vim.o[name] = value
+    end
+end
+
+function M.load_plugins(module)
+    local get_plugs_list = function ()
+        local repos = {}
+        local temp = vim.split(
+            fn.globpath(paths.plugs_path, '*/init.lua'), '\n'
+        )
+
+        for _, file in ipairs(temp) do
+            repos[#repos+1] = file:sub(#paths.nvim_config_path + 6, -1)
+        end
+
+        return repos
     end
 end
 

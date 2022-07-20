@@ -1,20 +1,14 @@
 local fn, uv, api = vim.fn, vim.loop, vim.api
+local paths = require("core.global").paths
 
 local packer = nil
-local plug_repos = {}
-
-local nvim_config_path = vim.fn.stdpath('config')
-local nvim_data_path = vim.fn.stdpath("data")
-local plugs_path = nvim_config_path .. '/lua/plugs'
-local packer_compiled_path = nvim_config_path .. '/lua/packer_compiled.lua'
-local packer_path = nvim_data_path .. "/site/pack/packer/start/packer.nvim"
 
 local pack = {}
 
 function pack.ensure_packer_installed()
-    local stat = uv.fs_stat(packer_path)
+    local stat = uv.fs_stat(paths.packer_path)
     if not stat then
-        local cmd = '!git clone git@github.com:wbthomason/packer.nvim.git ' .. packer_path
+        local cmd = '!git clone git@github.com:wbthomason/packer.nvim.git ' .. paths.packer_path
         api.nvim_command(cmd)
     end
     pack.load_packer()
@@ -25,11 +19,11 @@ function pack.load_plugins()
     local get_plugs_list = function ()
         local repos = {}
         local temp = vim.split(
-            fn.globpath(plugs_path, '*/init.lua'), '\n'
+            fn.globpath(paths.plugs_path, '*/init.lua'), '\n'
         )
 
         for _, file in ipairs(temp) do
-            repos[#repos+1] = file:sub(#nvim_config_path + 6, -1)
+            repos[#repos+1] = file:sub(#paths.nvim_config_path + 6, -1)
         end
 
         return repos
@@ -37,10 +31,8 @@ function pack.load_plugins()
 
     local plug_files = get_plugs_list()
     for _, p in ipairs(plug_files) do
-        local plugs = require(p:sub(0, #p - 4))
-        for repo, conf in pairs(plugs) do
-            plug_repos[#plug_repos + 1] = vim.tbl_extend('force', { repo }, conf)
-        end
+        vim.notify(p)
+        require(p:sub(0, #p - 4))
     end
 end
 
@@ -51,8 +43,9 @@ function pack.load_packer()
     end
 
     packer.init({
-        compile_path = packer_compiled_path,
+        compile_path = paths.packer_compiled_path,
         git = { clone_timeout = 60, default_url_format = "https://github.com/%s" },
+        ensure_dependencies = true,
         disable_commands = true,
         display = {
             non_interactive = false, -- If true, disable display windows for all operations
@@ -62,18 +55,14 @@ function pack.load_packer()
         },
     })
     packer.reset()
-    local use = packer.use
+
+    packer.use({ "nvim-lua/plenary.nvim" })
+    packer.use({ "wbthomason/packer.nvim" })
     pack.load_plugins()
-    -- 首先加载 impatient。
-    use({ "lewis6991/impatient.nvim", opt = false })
-    use({ "wbthomason/packer.nvim", opt = false })
-    for _, repo in ipairs(plug_repos) do
-		use(repo)
-	end
 end
 
 function pack.load_compile()
-    if vim.fn.filereadable(packer_compiled_path) == 1 then
+    if vim.fn.filereadable(paths.packer_compiled_path) == 1 then
         require('packer_compiled')
     else
         vim.notify('Missing packer compile file Run PackerCompile Or PackerInstall to fix')

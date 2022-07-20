@@ -1,4 +1,4 @@
-local bind = require('core.utils').keymap_bind
+local keymap_bind = require('core.utils').keymap_bind
 
 local mappings = {
     -- save with ctrl + s, V/I mode
@@ -62,4 +62,4 @@ local mappings = {
     ['<leader>a|<cmd>AerialToggle!<cr>'] = { mode = 'n', opts = { remap = true } },
 }
 
-bind(mappings)
+keymap_bind(mappings)
