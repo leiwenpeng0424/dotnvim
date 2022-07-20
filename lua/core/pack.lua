@@ -19,7 +19,7 @@ function pack.load_plugins()
     local get_plugs_list = function ()
         local repos = {}
         local temp = vim.split(
-            fn.globpath(paths.plugs_path, '*/init.lua'), '\n'
+            fn.globpath(paths.plugs_path, '*/*.lua'), '\n'
         )
 
         for _, file in ipairs(temp) do
@@ -31,7 +31,7 @@ function pack.load_plugins()
 
     local plug_files = get_plugs_list()
     for _, p in ipairs(plug_files) do
-        vim.notify(p)
+        vim.notify(p:sub(0, #p - 4))
         require(p:sub(0, #p - 4))
     end
 end

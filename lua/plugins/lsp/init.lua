@@ -1,6 +1,0 @@
-require("plugins.lsp.lsp-config")
-require("plugins.lsp.lsp-signature")
-require("plugins.lsp.nvim-cmp")
-require("plugins.lsp.lsp-saga")
-require("plugins.lsp.null-ls")
-require("plugins.lsp.trouble")
