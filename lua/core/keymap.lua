@@ -52,6 +52,8 @@ local mappings = {
     ['bc|<cmd>BufferClose<cr>'] = { mode = 'n', opts = { remap = true } },
     ['b<|<cmd>BufferMovePrevious<cr>'] = { mode = 'n', opts = { remap = true } },
     ['b>|<cmd>BufferMoveNext<cr>']  = { mode = 'n', opts = { remap = true } },
+    ['bP|<cmd>BufferPick<cr>'] = { mode = 'n', opts = { remap = false } },
+
     -- nvim-terminal
     ['<leader>t|<cmd>:lua NTGlobal["terminal"]:toggle()<cr>'] = { mode = 'n', opts = { remap = true } },
     ['<leader>-|<cmd>:lua NTGlobal["window"]:change_height(+2)<cr>'] = { mode = 'n', opts = { remap = true } },
