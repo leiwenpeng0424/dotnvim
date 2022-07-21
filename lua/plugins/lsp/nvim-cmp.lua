@@ -10,15 +10,6 @@
 local use = require("packer").use
 
 use({
-  "windwp/nvim-autopairs",
-  config = function ()
-    require('nvim-autopairs').setup({
-      disable_filetype = { 'TelescopePrompt', 'vim' }
-    })
-  end
-})
-
-use({
     "hrsh7th/nvim-cmp",
     as = 'cmp',
     requires = {
@@ -207,6 +198,37 @@ use({
         require("luasnip.loaders.from_snipmate").lazy_load()
     end,
 	requires = "rafamadriz/friendly-snippets",
+})
+
+use({
+    "windwp/nvim-autopairs",
+    config = function ()
+        require("nvim-autopairs").setup({})
+
+        -- If you want insert `(` after select function or method item
+        local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+        local cmp = require("cmp")
+        local handlers = require("nvim-autopairs.completion.handlers")
+        cmp.event:on(
+            "confirm_done",
+            cmp_autopairs.on_confirm_done({
+                filetypes = {
+                    -- "*" is an alias to all filetypes
+                    ["*"] = {
+                        ["("] = {
+                            kind = {
+                                cmp.lsp.CompletionItemKind.Function,
+                                cmp.lsp.CompletionItemKind.Method,
+                            },
+                            handler = handlers["*"],
+                        },
+                    },
+                    -- Disable for tex
+                    tex = false,
+                },
+            })
+        )
+      end
 })
 
 
