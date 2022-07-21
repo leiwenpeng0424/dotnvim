@@ -31,20 +31,24 @@ use({
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
         end
     
-        vim.cmd[[autocmd! CursorHold,CursorHoldI * lua require("lspsaga.diagnostic").show_line_diagnostics()]]
-    
-        local capabilities  = vim.lsp.protocol.make_client_capabilities()
-
+        -- vim.cmd[[autocmd! CursorHold,CursorHoldI * lua require("lspsaga.diagnostic").show_line_diagnostics()]]
         local cmp = pcall(require, 'cmp_nvim_lsp');
-
         if not cmp then
             vim.cmd([[packadd cmp-nvim-lsp]])
         end
-
+        local capabilities  = vim.lsp.protocol.make_client_capabilities()
         capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-    
         function on_attach(client, bufnr)
             require('aerial').on_attach(client, bufnr)
+            require("lsp_signature").on_attach({
+                bind = true,
+                use_lspsaga = false,
+                floating_window = true,
+                fix_pos = true,
+                hint_enable = true,
+                hi_parameter = "Search",
+                handler_opts = { "double" },
+            })
         end
     
         for _, server in ipairs(lsp_installer.get_installed_servers()) do
@@ -57,11 +61,10 @@ use({
                             runtime = {
                                 -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
                                 version = 'LuaJIT',
-                                path = '~/Developer/github/lua-language-server/bin/lua-language-server'
                             },
                             diagnostics = {
                                 -- Get the language server to recognize the `vim` global
-                                globals = { 'vim', 'packer_plugins' },
+                                globals = { 'vim' },
                             },
                             workspace = {
                                 library = {
@@ -85,52 +88,6 @@ use({
                             -- Schemas https://www.schemastore.org
                             schemas = require('schemastore').json.schemas(),
                             validate = { enable = true }
-                            --[[ {
-                                {
-                                    fileMatch = { "package.json" },
-                                    url = "https://json.schemastore.org/package.json",
-                                },
-                                {
-                                    fileMatch = { "tsconfig*.json", "jsconfig.json" },
-                                    url = "https://json.schemastore.org/tsconfig.json",
-                                },
-                                {
-                                    fileMatch = {
-                                        ".prettierrc",
-                                        ".prettierrc.json",
-                                        "prettier.config.json",
-                                    },
-                                    url = "https://json.schemastore.org/prettierrc.json",
-                                },
-                                {
-                                    fileMatch = { ".eslintrc", ".eslintrc.json" },
-                                    url = "https://json.scemastore.org/eslintrc.json",
-                                },
-                                {
-                                    fileMatch = {
-                                        ".babelrc",
-                                        ".babelrc.json",
-                                        "babel.config.json",
-                                    },
-                                    url = "https://json.schemastore.org/babelrc.json",
-                                },
-                                {
-                                    fileMatch = { "lerna.json" },
-                                    url = "https://json.schemastore.org/lerna.json",
-                                },
-                                {
-                                    fileMatch = {
-                                        ".stylelintrc",
-                                        ".stylelintrc.json",
-                                        "stylelint.config.json",
-                                    },
-                                    url = "http://json.schemastore.org/stylelintrc.json",
-                                },
-                                {
-                                    fileMatch = { "/.github/workflows/*" },
-                                    url = "https://json.schemastore.org/github-workflow.json",
-                                }
-                            }, ]]
                         },
                     },
                 })
