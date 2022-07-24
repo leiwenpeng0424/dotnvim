@@ -10,7 +10,7 @@ function load()
     require('core.keymap')
 
     vim.cmd([[set background=dark]])
-    vim.cmd[[colorscheme nightfox]]
+    vim.cmd[[colorscheme terafox]]
 end
 
 load()

@@ -16,6 +16,8 @@ use({
                 null_ls.builtins.formatting.lua_format,
                 null_ls.builtins.formatting.stylua,
                 null_ls.builtins.formatting.nginx_beautifier,
+                null_ls.builtins.formatting.rustfmt,
+                
             }
         })
     end

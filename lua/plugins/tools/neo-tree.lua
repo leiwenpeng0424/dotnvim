@@ -14,7 +14,7 @@ use({
         require('neo-tree').setup({
             close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
             popup_border_style = "rounded",
-            enable_git_status = true,
+            enable_git_status = false,
             enable_diagnostics = false,
             default_component_configs = {
                 container = {
@@ -70,7 +70,7 @@ use({
             },
             window = {
                 position = "left",
-                width = 40,
+                width = 35,
                 mapping_options = {
                     noremap = true,
                     nowait = true,
@@ -93,7 +93,7 @@ use({
                         "add",
                         -- some commands may take optional config options, see `:h neo-tree-mappings` for details
                         config = {
-                            show_path = "none" -- "none", "relative", "absolute"
+                            show_path = "relative" -- "none", "relative", "absolute"
                         }
                     },
                     ["A"] = "add_directory", -- also accepts the config.show_path option.
@@ -135,7 +135,7 @@ use({
                                         -- "open_current",  -- netrw disabled, opening a directory opens within the
                                                         -- window like netrw would, regardless of window.position
                                         -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
-                use_libuv_file_watcher = false, -- This will use the OS level file watchers to detect changes
+                use_libuv_file_watcher = true, -- This will use the OS level file watchers to detect changes
                                                 -- instead of relying on nvim autocmd events.
                 window = {
                     mappings = {

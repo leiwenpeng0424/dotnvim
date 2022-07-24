@@ -11,7 +11,7 @@ use({
     end
 })
 
-use( {
+use({
     "stevearc/aerial.nvim",
     config = function ()
         require('aerial').setup({})
@@ -19,11 +19,16 @@ use( {
 })
 
 use({
+    "SmiteshP/nvim-navic",
+    requires = "neovim/nvim-lspconfig"
+})
+
+use({
     "neovim/nvim-lspconfig",
     config = function ()
         local lsp_installer = require('nvim-lsp-installer')
         local lsp_config = require('lspconfig')
-    
+
         -- diagnostics signs in gutter
         local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
         for type, icon in pairs(signs) do
@@ -39,6 +44,9 @@ use({
         local capabilities  = vim.lsp.protocol.make_client_capabilities()
         capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
         function on_attach(client, bufnr)
+            --[[ if client.name ~= "eslint" then
+                require("nvim-navic").attach(client, bufnr)
+            end ]]
             require('aerial').on_attach(client, bufnr)
             require("lsp_signature").on_attach({
                 bind = true,
@@ -89,6 +97,17 @@ use({
                             schemas = require('schemastore').json.schemas(),
                             validate = { enable = true }
                         },
+                    },
+                })
+            elseif server.name == "rust_analyzer" then
+                lsp_config.rust_analyzer.setup({
+                    flags = { debounce_text_changes = 500 },
+                    capabilities = capabilities,
+                    on_attach = on_attach,
+                    settings = {
+                        ['rust_analyzer'] = {
+                            cmd = 'rustup run nightly rust-analyzer'
+                        }
                     },
                 })
             else

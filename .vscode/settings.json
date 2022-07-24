@@ -1,6 +1,0 @@
-{
-    "Lua.diagnostics.globals": [
-        "vim"
-    ],
-    "Lua.completion.autoRequire": false
-}
