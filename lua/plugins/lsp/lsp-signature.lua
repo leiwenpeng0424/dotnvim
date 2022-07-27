@@ -2,7 +2,7 @@
 
 local use = require("packer").use
 
-use({
+--[[ use({
     "ray-x/lsp_signature.nvim",
     config = function ()
         require "lsp_signature".setup({
@@ -13,4 +13,4 @@ use({
             hint_prefix = "🐶"
         })
     end
-})
+}) ]]

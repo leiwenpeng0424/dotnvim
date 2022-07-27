@@ -48,7 +48,7 @@ use({
                 require("nvim-navic").attach(client, bufnr)
             end ]]
             require('aerial').on_attach(client, bufnr)
-            require("lsp_signature").on_attach({
+            --[[ require("lsp_signature").on_attach({
                 bind = true,
                 use_lspsaga = false,
                 floating_window = true,
@@ -56,7 +56,7 @@ use({
                 hint_enable = true,
                 hi_parameter = "Search",
                 handler_opts = { "double" },
-            })
+            }) ]]
         end
     
         for _, server in ipairs(lsp_installer.get_installed_servers()) do
