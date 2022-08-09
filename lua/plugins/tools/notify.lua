@@ -30,7 +30,7 @@ use({
                 TRACE = "✎",
             },
         })
-        vim.notify = notify
+        --[[ vim.notify = notify ]]
     end
 })
 

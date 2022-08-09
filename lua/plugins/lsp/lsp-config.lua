@@ -2,32 +2,42 @@
 local use = require("packer").use
 
 use({
-    "williamboman/nvim-lsp-installer",
-    config = function ()
-        local nvim_lsp_installer = require('nvim-lsp-installer')
-        nvim_lsp_installer.setup({
-            automatic_installation = true
-        })
+    "williamboman/mason.nvim",
+    config = function()
+        require("mason").setup()
     end
 })
+
+use({
+     "williamboman/mason-lspconfig.nvim",
+     config = function()
+        require("mason-lspconfig").setup({
+            ensure_installed = {
+                "cssls",
+                "dockerls",
+                "dotls", "eslint", "graphql", "html", "jsonls", "tsserver", "sumneko_lua",
+                "rust_analyzer",
+                "taplo", "tailwindcss",
+                "tsserver", "vimls", "yamlls", "volar"
+            },
+            automatic_installation = true,
+        })
+     end
+})
+
 
 use({
     "stevearc/aerial.nvim",
     config = function ()
-        require('aerial').setup({})
+        require("aerial").setup({})
     end
-})
-
-use({
-    "SmiteshP/nvim-navic",
-    requires = "neovim/nvim-lspconfig"
 })
 
 use({
     "neovim/nvim-lspconfig",
     config = function ()
-        local lsp_installer = require('nvim-lsp-installer')
-        local lsp_config = require('lspconfig')
+        local nvim_lsp = require("lspconfig")
+        local mason_lsp = require("mason-lspconfig")
 
         -- diagnostics signs in gutter
         local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
@@ -35,45 +45,30 @@ use({
             local hl = "DiagnosticSign" .. type
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
         end
-    
+
         -- vim.cmd[[autocmd! CursorHold,CursorHoldI * lua require("lspsaga.diagnostic").show_line_diagnostics()]]
         local cmp = pcall(require, 'cmp_nvim_lsp');
         if not cmp then
             vim.cmd([[packadd cmp-nvim-lsp]])
         end
+
         local capabilities  = vim.lsp.protocol.make_client_capabilities()
         capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-        function on_attach(client, bufnr)
-            --[[ if client.name ~= "eslint" then
-                require("nvim-navic").attach(client, bufnr)
-            end ]]
+
+        local function on_attach(client, bufnr)
             require('aerial').on_attach(client, bufnr)
-            --[[ require("lsp_signature").on_attach({
-                bind = true,
-                use_lspsaga = false,
-                floating_window = true,
-                fix_pos = true,
-                hint_enable = true,
-                hi_parameter = "Search",
-                handler_opts = { "double" },
-            }) ]]
         end
-    
-        for _, server in ipairs(lsp_installer.get_installed_servers()) do
-            if server.name == 'sumneko_lua' then
-                lsp_config['sumneko_lua'].setup({
+
+
+
+        for _, server in ipairs(mason_lsp.get_installed_servers()) do
+	        if server == "sumneko_lua" then
+                nvim_lsp.sumneko_lua.setup({
                     capabilities = capabilities,
                     on_attach = on_attach,
                     settings = {
                         Lua = {
-                            runtime = {
-                                -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-                                version = 'LuaJIT',
-                            },
-                            diagnostics = {
-                                -- Get the language server to recognize the `vim` global
-                                globals = { 'vim' },
-                            },
+                            diagnostics = { globals = { "vim", "packer_plugins" } },
                             workspace = {
                                 library = {
                                     [vim.fn.expand("$VIMRUNTIME/lua")] = true,
@@ -83,35 +78,68 @@ use({
                                 preloadFileSize = 10000,
                             },
                             telemetry = { enable = false },
-                        }
-                    }
+                        },
+                    },
                 })
-            elseif server.name == "jsonls" then
-                lsp_config.jsonls.setup({
+            elseif server == "jsonls" then
+                nvim_lsp.jsonls.setup({
                     flags = { debounce_text_changes = 500 },
                     capabilities = capabilities,
                     on_attach = on_attach,
                     settings = {
                         json = {
                             -- Schemas https://www.schemastore.org
-                            schemas = require('schemastore').json.schemas(),
-                            validate = { enable = true }
+                            schemas = {
+                                {
+                                    fileMatch = { "package.json" },
+                                    url = "https://json.schemastore.org/package.json",
+                                },
+                                {
+                                    fileMatch = { "tsconfig*.json" },
+                                    url = "https://json.schemastore.org/tsconfig.json",
+                                },
+                                {
+                                    fileMatch = {
+                                        ".prettierrc",
+                                        ".prettierrc.json",
+                                        "prettier.config.json",
+                                    },
+                                    url = "https://json.schemastore.org/prettierrc.json",
+                                },
+                                {
+                                    fileMatch = { ".eslintrc", ".eslintrc.json" },
+                                    url = "https://json.schemastore.org/eslintrc.json",
+                                },
+                                {
+                                    fileMatch = {
+                                        ".babelrc",
+                                        ".babelrc.json",
+                                        "babel.config.json",
+                                    },
+                                    url = "https://json.schemastore.org/babelrc.json",
+                                },
+                                {
+                                    fileMatch = { "lerna.json" },
+                                    url = "https://json.schemastore.org/lerna.json",
+                                },
+                                {
+                                    fileMatch = {
+                                        ".stylelintrc",
+                                        ".stylelintrc.json",
+                                        "stylelint.config.json",
+                                    },
+                                    url = "http://json.schemastore.org/stylelintrc.json",
+                                },
+                                {
+                                    fileMatch = { "/.github/workflows/*" },
+                                    url = "https://json.schemastore.org/github-workflow.json",
+                                },
+                            },
                         },
                     },
                 })
-            elseif server.name == "rust_analyzer" then
-                lsp_config.rust_analyzer.setup({
-                    flags = { debounce_text_changes = 500 },
-                    capabilities = capabilities,
-                    on_attach = on_attach,
-                    settings = {
-                        ['rust_analyzer'] = {
-                            cmd = 'rustup run nightly rust-analyzer'
-                        }
-                    },
-                })
             else
-                lsp_config[server.name].setup({
+                nvim_lsp[server].setup({
                     capabilities = capabilities,
                     on_attach = on_attach,
                 })
