@@ -1,4 +1,4 @@
 # dotnvim
 Neovim Configuration
 
-## lsp-config
+## Used plugins
