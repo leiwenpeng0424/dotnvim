@@ -1,5 +1,3 @@
--- norcalli/nvim-colorizer.lua
-
 local use = require("packer").use
 
 use({
