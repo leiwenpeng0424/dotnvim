@@ -34,9 +34,7 @@ use({
 
 use({
     "RRethy/vim-illuminate",
-    config = function ()
-        
-    end
+    config = function () end
 })
 
 use({
