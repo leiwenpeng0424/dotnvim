@@ -4,7 +4,13 @@ use({
     'stevearc/dressing.nvim',
     config = function ()
         require('dressing').setup({
-            enable = true
+            input =  {
+                enable = true,
+                default_prompt = "✍️   :"
+            },
+            select = {
+                enable = true,
+            }
         })
     end
 })
