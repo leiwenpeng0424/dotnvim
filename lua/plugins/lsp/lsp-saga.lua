@@ -21,6 +21,7 @@ use({
                 scroll_down = "<C-d>",
                 scroll_up = "<C-u>", -- quit can be a table
             },
+            rename_in_select = false
         })
     end
 })

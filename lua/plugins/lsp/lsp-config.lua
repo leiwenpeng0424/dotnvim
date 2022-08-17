@@ -24,21 +24,7 @@ use({
         })
      end
 })
-
-use({
-    "stevearc/aerial.nvim",
-    config = function ()
-        require("aerial").setup({})
-    end
-})
-
-use({
-    "RRethy/vim-illuminate",
-    config = function ()
-        
-    end
-})
-
+use({ "RRethy/vim-illuminate", config = function () end })
 use({
     "neovim/nvim-lspconfig",
     config = function ()
@@ -62,7 +48,6 @@ use({
         capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
         local function on_attach(client, bufnr)
-            require('aerial').on_attach(client, bufnr)
             require('illuminate').on_attach(client)
         end
 
