@@ -62,6 +62,7 @@ local mappings = {
     ['gg|<cmd>LazyGit<cr>'] = { mode = 'n', opts = { remap = true } },
     -- aerial
     ['<leader>a|<cmd>AerialToggle!<cr>'] = { mode = 'n', opts = { remap = true } },
+    ['<c-z>|<cmd>:u<cr>'] = { mode = 'n', opts = { remap = true } }
 }
 
 keymap_bind(mappings)
