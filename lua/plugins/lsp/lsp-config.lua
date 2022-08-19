@@ -25,10 +25,10 @@ use({
      end
 })
 
-use({ "RRethy/vim-illuminate", config = function () end })
+use({ "RRethy/vim-illuminate", config = function()  end })
 
 use({
-    "RRethy/vim-illuminate",
+    'stevearc/aerial.nvim',
     config = function() require('aerial').setup() end
 })
 

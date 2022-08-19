@@ -1,6 +1,8 @@
 local keymap_bind = require('core.utils').keymap_bind
 
 local mappings = {
+    ['Q|:wqa<cr>'] = { mode = 'n', opts = { noremap = true } },
+    [';|:'] = { mode = 'n', opts = { noremap = true } },
     -- save with ctrl + s, V/I mode
     ['<c-s>|:w<cr>']                             = { mode = '', opts = { noremap = true } },
     ['<c-s>|<C-o>:w<cr>']                        = { mode = 'i', opts = { noremap = true } },
@@ -26,6 +28,8 @@ local mappings = {
     ["<c-k>|:m '<-2<cr>gv=gv"]                   = { mode = 'v', opts = { remap = true } },
     ["_|<c-w>5<"]                                = { mode = 'n', opts = { remap = true } },
     ['+|<c-w>5>']                                = { mode = 'n', opts = { remap = true } },
+    ['{|:resize -5<cr>']                    = { mode = 'n', opts = { remap = true } },
+    ['}|:resize +5<cr>']                    = { mode = 'n', opts = { remap = true } },
     ['<c-b>|<cmd>NeoTreeShowToggle<cr>']         = { mode = 'n', opts = { remap = true } },
     -- lspsaga
     ['gf|<cmd>Lspsaga lsp_finder<cr>']           = { mode = 'n', opts = { remap = true } },
@@ -62,7 +66,9 @@ local mappings = {
     ['gg|<cmd>LazyGit<cr>'] = { mode = 'n', opts = { remap = true } },
     -- aerial
     ['<leader>a|<cmd>AerialToggle!<cr>'] = { mode = 'n', opts = { remap = true } },
-    ['<c-z>|<cmd>:u<cr>'] = { mode = 'n', opts = { remap = true } }
+    ['<c-z>|<cmd>:u<cr>'] = { mode = 'n', opts = { remap = true } },
+    -- exit edit mode
+    ['<Esc>|<c-\\><c-n>'] = { mode = 't', opts = { remap = true } }
 }
 
 keymap_bind(mappings)
