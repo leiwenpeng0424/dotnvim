@@ -24,7 +24,14 @@ use({
         })
      end
 })
+
 use({ "RRethy/vim-illuminate", config = function () end })
+
+use {
+  'stevearc/aerial.nvim',
+  config = function() require('aerial').setup() end
+}
+
 use({
     "neovim/nvim-lspconfig",
     config = function ()
@@ -49,6 +56,7 @@ use({
 
         local function on_attach(client, bufnr)
             require('illuminate').on_attach(client)
+            require('aerial').on_attach(client, bufnr)
         end
 
         for _, server in ipairs(mason_lsp.get_installed_servers()) do
