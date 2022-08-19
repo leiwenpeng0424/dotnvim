@@ -3,10 +3,6 @@
 local use = require("packer").use
 
 use({
-    "nvim-telescope/telescope-ui-select.nvim",
-})
-
-use({
     "nvim-telescope/telescope.nvim",
     config = function ()
         local tel = require('telescope')
@@ -18,15 +14,15 @@ use({
                         ["s"] = actions.select_horizontal,
                         ["S"] = actions.select_vertical,
                     }
-                }
-            },
-            extensions = {
-                ['ui-select'] = {
-                    require("telescope.themes").get_dropdown {}
+                },
+                layout_strategies = 'horizontal',
+                layout_config = {
+                    width = 0.7,
+                    height = 0.8,
+                    prompt_position = 'top'
                 }
             }
         })
         tel.load_extension('lazygit')
-        tel.load_extension("ui-select")
     end
 })
