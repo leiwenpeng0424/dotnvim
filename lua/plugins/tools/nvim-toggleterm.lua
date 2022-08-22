@@ -8,8 +8,11 @@ use({
     config = function ()
         require("toggleterm").setup({
             open_mapping = [[;;]],
-            direction = 'float', -- 'vertical' | 'horizontal' | 'tab' | 'float'
+            direction = 'horizontal', -- 'vertical' | 'horizontal' | 'tab' | 'float'
             insert_mappings = true,
+            float_opts = {
+                border = 'double'
+            }
         })
     end
 })

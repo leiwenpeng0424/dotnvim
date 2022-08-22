@@ -9,6 +9,19 @@ use({
 })
 
 use({
+    'kevinhwang91/nvim-ufo',
+    requires = 'kevinhwang91/promise-async',
+    config = function ()
+        vim.o.foldcolumn = '1'
+        vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+        vim.o.foldlevelstart = 99
+        vim.o.foldenable = true
+
+        require('ufo').setup({})
+    end
+})
+
+use({
      "williamboman/mason-lspconfig.nvim",
      config = function()
         require("mason-lspconfig").setup({
@@ -25,8 +38,10 @@ use({
      end
 })
 
+use({ "RRethy/vim-illuminate", config = function () end })
+
 use({
-    "RRethy/vim-illuminate",
+    'stevearc/aerial.nvim',
     config = function() require('aerial').setup() end
 })
 
@@ -52,10 +67,15 @@ use({
         local capabilities  = vim.lsp.protocol.make_client_capabilities()
 
         capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+
         capabilities.textDocument.completion.completionItem.snippetSupport = true
+        capabilities.textDocument.foldingRange = {
+            dynamicRegistration = false,
+            lineFoldingOnly = true
+        }
 
         local function on_attach(client, bufnr)
-            require('illuminate').on_attach(client)
+            --[[ require('illuminate').on_attach(client) ]]
             require('aerial').on_attach(client, bufnr)
         end
 

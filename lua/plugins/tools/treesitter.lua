@@ -3,6 +3,12 @@
 local use = require("packer").use
 
 use({
+    'JoosepAlviste/nvim-ts-context-commentstring'
+})
+
+use({ 'mfussenegger/nvim-ts-hint-textobject' })
+
+use({
     "nvim-treesitter/nvim-treesitter",
     run = ':TSUpdate',
     config = function ()
@@ -13,6 +19,9 @@ use({
             },
             autotag = {
                 enable = true,
+            },
+            context_commentstring = {
+                enable = true
             },
             ensure_installed  = {
                 'javascript',

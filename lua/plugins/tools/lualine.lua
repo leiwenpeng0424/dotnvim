@@ -26,10 +26,14 @@ use({
                 { 'mode', separator = { left = '' }, right_padding = 2 }
             },
             lualine_b = {'branch', 'diff', 'diagnostics'},
-            lualine_c = {'filename', {
-                'filesize',
-                icon = '',
-                color = { gui = 'bold' } }},
+            lualine_c = {
+                'filename',
+                {
+                    'filesize',
+                    icon = '',
+                    color = { gui = 'bold' }
+                }
+            },
             lualine_x = {'encoding', 'fileformat', 'filetype'},
             lualine_y = {'progress'},
             lualine_z = {
