@@ -68,7 +68,12 @@ local mappings = {
     ['<leader>a|<cmd>AerialToggle!<cr>'] = { mode = 'n', opts = { remap = true } },
     ['<c-z>|<cmd>:u<cr>'] = { mode = 'n', opts = { remap = true } },
     -- exit edit mode
-    ['<Esc>|<c-\\><c-n>'] = { mode = 't', opts = { remap = true } }
+    ['<Esc>|<c-\\><c-n>'] = { mode = 't', opts = { remap = true } },
+    -- hop
+    ['<c-f>|<cmd>HopPattern<cr>'] = { mode = 'n', opts = { remap = true } },
+    ['<c-h>|<cmd>HopWord<cr>'] = { mode = 'n', opts = { remap = true } },
+    -- focus
+    ['<c-l>|<cmd>FocusSplitNicely<cr>'] = { mode = 'n', opts = { remap = true } }
 }
 
 keymap_bind(mappings)

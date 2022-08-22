@@ -2,6 +2,14 @@
 
 local use = require("packer").use
 
+use {
+    "ThePrimeagen/refactoring.nvim",
+    requires = {
+        {"nvim-lua/plenary.nvim"},
+        {"nvim-treesitter/nvim-treesitter"}
+    }
+}
+
 use({
     "nvim-telescope/telescope.nvim",
     config = function ()
@@ -23,6 +31,7 @@ use({
                 }
             }
         })
+        tel.load_extension('refactoring')
         tel.load_extension('lazygit')
     end
 })
