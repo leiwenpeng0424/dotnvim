@@ -5,6 +5,7 @@ use({
     config = function()
         require('github-theme').setup({
             dark_float = true,
+            --[[ transparent = true ]]
         })
     end
 })
