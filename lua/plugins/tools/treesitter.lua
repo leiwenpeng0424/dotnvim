@@ -8,11 +8,23 @@ use({
 
 use({ 'mfussenegger/nvim-ts-hint-textobject' })
 
+use({ 'nvim-treesitter/nvim-tree-docs' })
+
 use({
     "nvim-treesitter/nvim-treesitter",
     run = ':TSUpdate',
     config = function ()
         require('nvim-treesitter.configs').setup({
+            tree_docs = { 
+                enable = true,
+                spec_config = {
+                    jsdoc = {
+                        slots = {
+                            class = { author = true,  }
+                        }
+                    }
+                }
+            },
             highlight = {
                 enable = true,
                 additional_vim_regex_highlighting = { 'org' },

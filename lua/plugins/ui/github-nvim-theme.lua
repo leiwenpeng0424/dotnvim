@@ -7,7 +7,7 @@ use({
             dark_float = true,
             dark_sidebar = false,
             --[[ transparent = true ]]
-            siderbars = {
+            sidebars = {
                 'qf',
                 'terminal',
                 'neo-tree',
