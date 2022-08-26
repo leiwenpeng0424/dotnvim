@@ -6,7 +6,7 @@ function load()
     pack.load_compile()
     require('core.keymap')
     -- [[ vim.cmd([[set background=dark]]) ]]
-    vim.cmd[[colorscheme github_dark_default]]
+    vim.cmd[[colorscheme nordfox]]
 end
 
 load()
