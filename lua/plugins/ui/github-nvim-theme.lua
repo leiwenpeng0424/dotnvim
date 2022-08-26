@@ -5,7 +5,15 @@ use({
     config = function()
         require('github-theme').setup({
             dark_float = true,
+            dark_sidebar = false,
             --[[ transparent = true ]]
+            siderbars = {
+                'qf',
+                'terminal',
+                'neo-tree',
+                'toggleterm',
+                'aerial'
+            }
         })
     end
 })
