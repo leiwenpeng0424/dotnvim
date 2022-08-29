@@ -72,8 +72,8 @@ local mappings = {
     -- hop
     ['<c-f>|<cmd>HopPattern<cr>'] = { mode = 'n', opts = { remap = true } },
     ['<c-h>|<cmd>HopWord<cr>'] = { mode = 'n', opts = { remap = true } },
-    -- focus
-    ['<c-l>|<cmd>FocusSplitNicely<cr>'] = { mode = 'n', opts = { remap = true } }
+    -- ToggleTerm
+    ['<c-`>|<cmd>ToggleTermToggleAll<cr>'] = { mode = 'n', opts = { remap = true } }
 }
 
 keymap_bind(mappings)
