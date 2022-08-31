@@ -7,7 +7,7 @@ function M.keymap_bind(mappings)
         local lhs, cmd = key:match("([^|]*)|?(.*)")
         if type(value) == "table" then
             local mode = value.mode
-            local options = { noremap = true }
+            local options = { noremap = true, silent = true }
             if value.opts then
                 options = vim.tbl_extend("force", options, value.opts)
             end

@@ -16,7 +16,7 @@ use({
             component_separators = { left = '•', right = '•' },
             section_separators = { left = '', right = ''},
             disabled_filetypes = {
-                statusline = { "neo-tree", "Trouble", "aerial", "dashboard", "lspsagaoutline" }
+                statusline = { "neo-tree", "Trouble", "aerial", "dashboard", "lspsagaoutline", "toggleterm" }
             },
             always_divide_middle = true,
             globalstatus = false,
