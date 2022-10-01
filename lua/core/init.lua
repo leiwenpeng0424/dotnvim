@@ -5,8 +5,8 @@ function load()
     pack.ensure_packer_installed()
     pack.load_compile()
     require('core.keymap')
-    -- [[ vim.cmd([[set background=dark]]) ]]
-    vim.cmd[[colorscheme nordfox]]
+    vim.cmd[[set background=dark]]
+    vim.cmd[[colorscheme terafox]]
 end
 
 load()

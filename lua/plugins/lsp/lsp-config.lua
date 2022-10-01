@@ -13,24 +13,29 @@ use({
      config = function()
         require("mason-lspconfig").setup({
             ensure_installed = {
-                "cssls",
                 "dockerls",
-                "dotls", "eslint", "graphql", "html", "jsonls", "tsserver", "sumneko_lua",
+                "dotls",
+                "eslint",
+                "graphql",
+                "html",
+                "jsonls",
+                "tsserver",
+                "sumneko_lua",
                 "rust_analyzer",
-                "taplo", "tailwindcss",
-                "tsserver", "vimls", "yamlls", "volar"
+                "taplo", -- toml
+                "tsserver",
+                "vimls",
+                "yamlls",
+                "volar"
            },
             automatic_installation = true,
         })
      end
 })
 
-use({ "RRethy/vim-illuminate", config = function () end })
+use({ "RRethy/vim-illuminate", config = function () require('illuminate').setup({}) end })
 
-use({
-    'stevearc/aerial.nvim',
-    config = function() require('aerial').setup() end
-})
+use({ "stevearc/aerial.nvim", config = function() require('aerial').setup({}) end })
 
 use({
     "neovim/nvim-lspconfig",
@@ -54,12 +59,6 @@ use({
         local capabilities  = vim.lsp.protocol.make_client_capabilities()
 
         capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
-
-        capabilities.textDocument.completion.completionItem.snippetSupport = true
-        --[[ capabilities.textDocument.foldingRange = {
-            dynamicRegistration = false,
-            lineFoldingOnly = true
-        } ]]
 
         local function on_attach(client, bufnr)
             --[[ require('illuminate').on_attach(client) ]]
