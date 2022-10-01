@@ -37,7 +37,7 @@ use({
                 icon = {
                     folder_closed = "",
                     folder_open = "",
-                    folder_empty = "ﰊ",
+                    folder_empty = "",
                     -- The next two settings are only a fallback, if you use nvim-web-devicons and configure default icons there
                     -- then these will never be used.
                     default = "*",
@@ -127,7 +127,7 @@ use({
                         "thumbs.db"
                     },
                 },
-                follow_current_file = false, -- This will find and focus the file in the active buffer every
+                follow_current_file = true, -- This will find and focus the file in the active buffer every
                                             -- time the current file is changed while the tree is open.
                 group_empty_dirs = false, -- when true, empty folders will be grouped together
                 hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
