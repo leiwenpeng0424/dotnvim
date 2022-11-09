@@ -8,7 +8,7 @@ use({
         require('trouble').setup({
             mode = "document_diagnostics", -- "workspace_diagnostics", "document_diagnostics", "quickfix", "lsp_references", "loclist"
             action_keys = {
-                open_split = { 's' },
+                open_split = { 'X' },
                 open_vsplit = { 'S' }
             }
         })

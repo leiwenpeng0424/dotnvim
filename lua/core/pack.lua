@@ -30,6 +30,7 @@ function pack.load_plugins()
     end
 
     local plug_files = get_plugs_list()
+
     for _, p in ipairs(plug_files) do
         require(p:sub(0, #p - 4))
     end

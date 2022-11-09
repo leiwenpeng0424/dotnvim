@@ -4,7 +4,7 @@ local use = require("packer").use
 use({
     "williamboman/mason.nvim",
     config = function()
-        require("mason").setup()
+        require("mason").setup({})
     end
 })
 
@@ -33,7 +33,7 @@ use({
      end
 })
 
-use({ "RRethy/vim-illuminate", config = function () require('illuminate').setup({}) end })
+-- use({ "RRethy/vim-illuminate", config = function () require('illuminate').setup({}) end })
 
 use({ "stevearc/aerial.nvim", config = function() require('aerial').setup({}) end })
 
@@ -58,11 +58,11 @@ use({
 
         local capabilities  = vim.lsp.protocol.make_client_capabilities()
 
-        capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+        capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
         local function on_attach(client, bufnr)
             --[[ require('illuminate').on_attach(client) ]]
-            require('aerial').on_attach(client, bufnr)
+            -- require('aerial').on_attach(client, bufnr)
         end
 
         for _, server in ipairs(mason_lsp.get_installed_servers()) do
@@ -72,7 +72,7 @@ use({
                     on_attach = on_attach,
                     settings = {
                         Lua = {
-                            diagnostics = { globals = { "vim", "packer_plugins" } },
+                            diagnostics = { globals = { "vim" } },
                             workspace = {
                                 library = {
                                     [vim.fn.expand("$VIMRUNTIME/lua")] = true,
@@ -81,7 +81,6 @@ use({
                                 maxPreload = 100000,
                                 preloadFileSize = 10000,
                             },
-                            telemetry = { enable = false },
                         },
                     },
                 })
