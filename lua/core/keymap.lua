@@ -51,6 +51,7 @@ local mappings = {
     ['gd|<cmd>Lspsaga peek_definition<cr>']   = { mode = 'n', opts = { noremap = true } },
     ['K|<cmd>Lspsaga hover_doc<cr>']             = { mode = 'n', opts = { noremap = true } },
     ["<F2>|<cmd>Lspsaga rename<cr>"] = { mode = 'n', opts = { noremap = true } },
+    ["<leader>fm|<cmd>:lua vim.lsp.buf.format({ async = true })<cr>"] = { mode = 'n' },
 
     -- move cursor
     ['<leader><Down>|<c-w>j']                    = { mode = 'n', opts = { noremap = true } },

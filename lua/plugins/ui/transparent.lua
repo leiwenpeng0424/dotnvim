@@ -4,7 +4,10 @@ use({
     "xiyaowong/nvim-transparent",
     config = function ()
         require("transparent").setup({
-            enable = false
+            enable = true,
+            extra_groups = {
+                "CursorLineNr"
+            }
         })
     end
 })
