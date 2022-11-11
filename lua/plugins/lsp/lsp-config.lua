@@ -4,13 +4,23 @@ local use = require("packer").use
 use({
     "williamboman/mason.nvim",
     config = function()
-        require("mason").setup({})
+        require("mason").setup {
+            ui = {
+                -- border = "",
+                icons = {
+                    package_pending = " ",
+                    package_installed = " ",
+                    package_uninstalled = " ﮊ",
+                }
+            },
+            max_concurrent_installers = 10,
+        }
     end
 })
 
 use({
-     "williamboman/mason-lspconfig.nvim",
-     config = function()
+    "williamboman/mason-lspconfig.nvim",
+    config = function()
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "dockerls",
@@ -27,10 +37,10 @@ use({
                 "vimls",
                 "yamlls",
                 "volar"
-           },
+            },
             automatic_installation = true,
         })
-     end
+    end
 })
 
 -- use({ "RRethy/vim-illuminate", config = function () require('illuminate').setup({}) end })
@@ -39,7 +49,7 @@ use({ "stevearc/aerial.nvim", config = function() require('aerial').setup({}) en
 
 use({
     "neovim/nvim-lspconfig",
-    config = function ()
+    config = function()
         local nvim_lsp = require("lspconfig")
         local mason_lsp = require("mason-lspconfig")
 
@@ -56,17 +66,18 @@ use({
             vim.cmd([[packadd cmp-nvim-lsp]])
         end
 
-        local capabilities  = vim.lsp.protocol.make_client_capabilities()
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
 
         capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
         local function on_attach(client, bufnr)
-            --[[ require('illuminate').on_attach(client) ]]
-            -- require('aerial').on_attach(client, bufnr)
+            if client.server_capabilities["documentSymbolProvider"] then
+                require "nvim-navic".attach(client, bufnr)
+            end
         end
 
         for _, server in ipairs(mason_lsp.get_installed_servers()) do
-	        if server == "sumneko_lua" then
+            if server == "sumneko_lua" then
                 nvim_lsp.sumneko_lua.setup({
                     capabilities = capabilities,
                     on_attach = on_attach,
