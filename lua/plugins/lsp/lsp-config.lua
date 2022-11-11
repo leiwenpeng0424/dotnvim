@@ -6,7 +6,7 @@ use({
     config = function()
         require("mason").setup {
             ui = {
-                -- border = "",
+                border = "single",
                 icons = {
                     package_pending = " ",
                     package_installed = " ",
@@ -43,8 +43,6 @@ use({
     end
 })
 
--- use({ "RRethy/vim-illuminate", config = function () require('illuminate').setup({}) end })
-
 use({ "stevearc/aerial.nvim", config = function() require('aerial').setup({}) end })
 
 use({
@@ -60,7 +58,6 @@ use({
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
         end
 
-        -- vim.cmd[[autocmd! CursorHold,CursorHoldI * lua require("lspsaga.diagnostic").show_line_diagnostics()]]
         local cmp = pcall(require, 'cmp_nvim_lsp');
         if not cmp then
             vim.cmd([[packadd cmp-nvim-lsp]])

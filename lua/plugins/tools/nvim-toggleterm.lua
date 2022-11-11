@@ -11,7 +11,7 @@ use({
             direction = 'float', -- 'vertical' | 'horizontal' | 'tab' | 'float'
             insert_mappings = true,
             float_opts = {
-                border = 'double'
+                border = 'single'
             }
         })
     end

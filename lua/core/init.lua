@@ -6,7 +6,7 @@ function load()
     pack.load_compile()
     require('core.keymap')
     vim.cmd[[set background=dark]]
-    vim.cmd[[colorscheme catppuccin]]
+    vim.cmd[[colorscheme tokyonight]] -- enfocado
 end
 
 load()

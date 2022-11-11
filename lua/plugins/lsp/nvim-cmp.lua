@@ -170,7 +170,7 @@ use({
                 { name = "orgmode" },
                 { name = "buffer" },
                 { name = "latex_symbols" },
-                -- { name = "cmp_tabnine" },
+                { name = "crates" },
             },
         })
     end
