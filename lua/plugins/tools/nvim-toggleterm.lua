@@ -1,18 +1,15 @@
 --[[ akinsho/nvim-toggleterm.lua ]]
 
-local use  = require("packer").use
+local use = require("packer").use
 
 use({
     "akinsho/toggleterm.nvim",
-    tag = 'v2.*',
-    config = function ()
+    tag = '*',
+    config = function()
         require("toggleterm").setup({
             open_mapping = [[;;]],
-            direction = 'float', -- 'vertical' | 'horizontal' | 'tab' | 'float'
+            direction = 'horizontal', -- 'vertical' | 'horizontal' | 'tab' | 'float'
             insert_mappings = true,
-            float_opts = {
-                border = 'single'
-            }
         })
     end
 })

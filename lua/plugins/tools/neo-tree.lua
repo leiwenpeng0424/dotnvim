@@ -1,5 +1,3 @@
--- nvim-neo-tree/neo-tree.nvim
-
 local use = require("packer").use
 
 use({
@@ -9,8 +7,30 @@ use({
         { "nvim-lua/plenary.nvim" },
         { "kyazdani42/nvim-web-devicons" }, -- not strictly required, but recommended
         { "MunifTanjim/nui.nvim" },
+        {
+            -- only needed if you want to use the commands with "_with_window_picker" suffix
+            's1n7ax/nvim-window-picker',
+            tag = "v1.*",
+            config = function()
+                require 'window-picker'.setup({
+                    autoselect_one = true,
+                    include_current = false,
+                    filter_rules = {
+                        -- filter using buffer options
+                        bo = {
+                            -- if the file type is one of following, the window will be ignored
+                            filetype = { 'neo-tree', "neo-tree-popup", "notify" },
+
+                            -- if the buffer type is one of following, the window will be ignored
+                            buftype = { 'terminal', "quickfix" },
+                        },
+                    },
+                    other_win_hl_color = '#e35e4f',
+                })
+            end,
+        }
     },
-    config = function ()
+    config = function()
         require('neo-tree').setup({
             close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
             popup_border_style = "rounded",
@@ -57,8 +77,8 @@ use({
                         -- Change type
                         added     = "", -- or "✚", but this is redundant info if you use git_status_colors on the name
                         modified  = "", -- or "", but this is redundant info if you use git_status_colors on the name
-                        deleted   = "✖",-- this can only be used in the git_status source
-                        renamed   = "",-- this can only be used in the git_status source
+                        deleted   = "✖", -- this can only be used in the git_status source
+                        renamed   = "", -- this can only be used in the git_status source
                         -- Status type
                         untracked = "",
                         ignored   = "",
@@ -78,7 +98,7 @@ use({
                 mappings = {
                     ["<space>"] = {
                         "toggle_node",
-                        nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use 
+                        nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
                     },
                     ["<2-LeftMouse>"] = "open",
                     ["<cr>"] = "open",
@@ -128,15 +148,15 @@ use({
                     },
                 },
                 follow_current_file = true, -- This will find and focus the file in the active buffer every
-                                            -- time the current file is changed while the tree is open.
+                -- time the current file is changed while the tree is open.
                 group_empty_dirs = false, -- when true, empty folders will be grouped together
                 hijack_netrw_behavior = "open_default", -- netrw disabled, opening a directory opens neo-tree
-                                                        -- in whatever position is specified in window.position
-                                        -- "open_current",  -- netrw disabled, opening a directory opens within the
-                                                        -- window like netrw would, regardless of window.position
-                                        -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
+                -- in whatever position is specified in window.position
+                -- "open_current",  -- netrw disabled, opening a directory opens within the
+                -- window like netrw would, regardless of window.position
+                -- "disabled",    -- netrw left alone, neo-tree does not handle opening dirs
                 use_libuv_file_watcher = true, -- This will use the OS level file watchers to detect changes
-                                                -- instead of relying on nvim autocmd events.
+                -- instead of relying on nvim autocmd events.
                 window = {
                     mappings = {
                         ["<bs>"] = "navigate_up",
@@ -152,7 +172,7 @@ use({
             },
             buffers = {
                 follow_current_file = true, -- This will find and focus the file in the active buffer every
-                                            -- time the current file is changed while the tree is open.
+                -- time the current file is changed while the tree is open.
                 group_empty_dirs = true, -- when true, empty folders will be grouped together
                 show_unloaded = true,
                 window = {

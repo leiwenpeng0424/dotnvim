@@ -5,23 +5,18 @@ use({
     as = 'cmp',
     requires = {
         { "lukas-reineke/cmp-under-comparator" },
-		{ "saadparwaiz1/cmp_luasnip" },
-		{ "hrsh7th/cmp-nvim-lsp"  },
-		{ "hrsh7th/cmp-nvim-lua"  },
-		{ "andersevenrud/cmp-tmux" },
-		{ "hrsh7th/cmp-path" },
-		{ "f3fora/cmp-spell" },
-		{ "hrsh7th/cmp-buffer" },
-		{ "kdheepak/cmp-latex-symbols" },
+        { "saadparwaiz1/cmp_luasnip" },
+        { "hrsh7th/cmp-nvim-lsp" },
+        { "hrsh7th/cmp-nvim-lua" },
+        { "andersevenrud/cmp-tmux" },
+        { "hrsh7th/cmp-path" },
+        { "f3fora/cmp-spell" },
+        { "hrsh7th/cmp-buffer" },
+        { "kdheepak/cmp-latex-symbols" },
     },
-    config = function ()
-        -- vim.cmd([[packadd cmp-tabnine]])
+    config = function()
         local t = function(str)
             return vim.api.nvim_replace_termcodes(str, true, true, true)
-        end
-        local has_words_before = function()
-            local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-            return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
         end
 
         local border = function(hl)
@@ -50,6 +45,7 @@ use({
             window = {
                 completion = {
                     border = border("CmpBorder"),
+                    winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
                 },
                 documentation = {
                     border = border("CmpDocBorder"),
@@ -116,18 +112,23 @@ use({
                 end,
             },
             -- You can set mappings if you want
-            mapping = cmp.mapping.preset.insert({
-                ["<CR>"] = cmp.mapping.confirm({ select = true }),
+            mapping = {
                 ["<C-p>"] = cmp.mapping.select_prev_item(),
                 ["<C-n>"] = cmp.mapping.select_next_item(),
                 ["<C-d>"] = cmp.mapping.scroll_docs(-4),
                 ["<C-f>"] = cmp.mapping.scroll_docs(4),
+                ["<C-Space>"] = cmp.mapping.complete(),
                 ["<C-e>"] = cmp.mapping.close(),
+                ["<CR>"] = cmp.mapping.confirm({
+                    select = false,
+                    behavior = cmp.ConfirmBehavior.Replace
+                }),
                 ["<Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item()
-                    elseif has_words_before() then
-                        cmp.complete()
+                    elseif require("luasnip").expand_or_jumpable() then
+                        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true)
+                            , "")
                     else
                         fallback()
                     end
@@ -135,6 +136,8 @@ use({
                 ["<S-Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_prev_item()
+                    elseif require("luasnip").jumpable(-1) then
+                        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-jump-prev", true, true, true), "")
                     else
                         fallback()
                     end
@@ -153,7 +156,7 @@ use({
                         fallback()
                     end
                 end,
-            }),
+            },
             snippet = {
                 expand = function(args)
                     require("luasnip").lsp_expand(args.body)
@@ -178,7 +181,7 @@ use({
 
 use({
     "L3MON4D3/LuaSnip",
-	config = function()
+    config = function()
         vim.o.runtimepath = vim.o.runtimepath .. "," .. os.getenv("HOME") .. "/.config/nvim/my-snippets/,"
         require("luasnip").config.set_config({
             history = true,
@@ -188,12 +191,12 @@ use({
         require("luasnip.loaders.from_vscode").lazy_load()
         require("luasnip.loaders.from_snipmate").lazy_load()
     end,
-	requires = "rafamadriz/friendly-snippets",
+    requires = "rafamadriz/friendly-snippets",
 })
 
 use({
     "windwp/nvim-autopairs",
-    config = function ()
+    config = function()
         require("nvim-autopairs").setup({})
 
         -- If you want insert `(` after select function or method item
@@ -219,6 +222,5 @@ use({
                 },
             })
         )
-      end
+    end
 })
-

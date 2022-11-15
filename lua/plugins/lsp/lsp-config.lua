@@ -1,4 +1,3 @@
--- neovim/nvim-lspconfig
 local use = require("packer").use
 
 use({
@@ -43,7 +42,12 @@ use({
     end
 })
 
-use({ "stevearc/aerial.nvim", config = function() require('aerial').setup({}) end })
+use({
+    "stevearc/aerial.nvim",
+    config = function()
+        require('aerial').setup({})
+    end
+})
 
 use({
     "neovim/nvim-lspconfig",
