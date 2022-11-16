@@ -1,5 +1,3 @@
--- jose-elias-alvarez/null-ls.nvim
-
 local use = require("packer").use
 
 use({

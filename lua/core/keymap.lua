@@ -2,7 +2,6 @@ local keymap_bind = require('core.utils').keymap_bind
 
 local mappings = {
     ['Q|:wqa<cr>'] = { mode = 'n', opts = { noremap = true } },
-    [';|:'] = { mode = 'n', opts = { noremap = true } },
 
     -- save with ctrl + s, V/I mode
     ['<c-s>|:w<cr>']      = { mode = '', opts = { noremap = true } },
@@ -11,6 +10,7 @@ local mappings = {
 
     -- open vertical split
     ['<leader>v|<c-w>v'] = { mode = 'n', opts = { noremap = true } },
+    -- ['<leader>v|<c-w>v'] = { mode = 'n', opts = { noremap = true } },
 
     -- down is really the next line
     ['j|gj'] = { mode = 'n', opts = { noremap = true } },
@@ -73,7 +73,9 @@ local mappings = {
     ['bP|<cmd>BufferPick<cr>']          = { mode = 'n', opts = { noremap = false } },
 
     -- nvim-terminal
-    ['<leader>t|<cmd>:lua NTGlobal["terminal"]:toggle()<cr>'] = { mode = 'n', opts = { noremap = true } },
+    ['<leader>t|<cmd>TroubleToggle<cr>'] = {
+        mode = 'n', opts = { noremap = true }
+    },
     ['<leader>-|<cmd>:lua NTGlobal["window"]:change_height(+2)<cr>'] = { mode = 'n', opts = { noremap = true } },
     ['<leader>+|<cmd>:lua NTGlobal["window"]:change_height(-2)<cr>'] = { mode = 'n', opts = { noremap = true } },
 

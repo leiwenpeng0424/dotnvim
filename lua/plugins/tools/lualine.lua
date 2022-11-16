@@ -16,7 +16,13 @@ use({
                 component_separators = { left = '•', right = '•' },
                 section_separators = { left = '', right = '' },
                 disabled_filetypes = {
-                    statusline = { "neo-tree", "Trouble", "aerial", "dashboard", "lspsagaoutline", "toggleterm" }
+                    statusline = {
+                        "neo-tree",
+                        "Trouble",
+                        "aerial",
+                        "alpha",
+                        "dashboard", "lspsagaoutline", "toggleterm"
+                    }
                 },
                 always_divide_middle = true,
                 globalstatus = false,
@@ -27,7 +33,7 @@ use({
                 },
                 lualine_b = { 'branch', 'diff', 'diagnostics' },
                 lualine_c = {
-                    'filename',
+                    -- 'filename',
                     {
                         'filesize',
                         icon = '',

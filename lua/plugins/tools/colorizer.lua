@@ -4,7 +4,7 @@ use({
     "norcalli/nvim-colorizer.lua",
     config = function ()
         require('colorizer').setup({
-            '*'; -- enable all filetype
+            '*' -- enable all filetype
         })
     end
 })
