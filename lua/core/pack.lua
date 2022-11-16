@@ -50,7 +50,7 @@ function pack.load_packer()
         display = {
             non_interactive = false, -- If true, disable display windows for all operations
             open_fn = function()
-                return require("packer.util").float({ border = "none" })
+                return require("packer.util").float({ border = "single" })
             end,
         },
     })

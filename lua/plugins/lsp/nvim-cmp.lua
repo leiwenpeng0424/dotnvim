@@ -13,6 +13,13 @@ use({
         { "f3fora/cmp-spell" },
         { "hrsh7th/cmp-buffer" },
         { "kdheepak/cmp-latex-symbols" },
+        {
+            "L3MON4D3/LuaSnip",
+            tag = "v<CurrentMajor>.*",
+            config = function ()
+                require "luasnip.loader.form_snipmate".load({ "./my-snippets" })
+            end
+        }
     },
     config = function()
         local t = function(str)
@@ -113,10 +120,10 @@ use({
             },
             -- You can set mappings if you want
             mapping = {
-                ["<C-p>"] = cmp.mapping.select_prev_item(),
-                ["<C-n>"] = cmp.mapping.select_next_item(),
-                ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-                ["<C-f>"] = cmp.mapping.scroll_docs(4),
+                -- ["<C-p>"] = cmp.mapping.select_prev_item(),
+                -- ["<C-n>"] = cmp.mapping.select_next_item(),
+                ["<C-u>"] = cmp.mapping.scroll_docs(-4),
+                ["<C-d>"] = cmp.mapping.scroll_docs(4),
                 ["<C-Space>"] = cmp.mapping.complete(),
                 ["<C-e>"] = cmp.mapping.close(),
                 ["<CR>"] = cmp.mapping.confirm({

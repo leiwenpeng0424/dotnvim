@@ -2,7 +2,6 @@ local keymap_bind = require('core.utils').keymap_bind
 
 local mappings = {
     ['Q|:wqa<cr>'] = { mode = 'n', opts = { noremap = true } },
-
     -- save with ctrl + s, V/I mode
     ['<c-s>|:w<cr>']      = { mode = '', opts = { noremap = true } },
     ['<c-s>|<C-o>:w<cr>'] = { mode = 'i', opts = { noremap = true } },
@@ -96,7 +95,7 @@ local mappings = {
     -- ToggleTerm
     ['<c-`>|<cmd>ToggleTermToggleAll<cr>'] = { mode = 'n', opts = { noremap = true } },
 
-    -- Comment
+    -- Comment.nvim
     ['<leader>/|<cmd>:lua require("Comment.api").toggle.linewise.current()<cr>'] = {
         mode = 'n',
         opts = {

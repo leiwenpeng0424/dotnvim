@@ -1,18 +1,15 @@
--- nvim-telescope/telescope.nvim
-
 local use = require("packer").use
 
 use {
-    "ThePrimeagen/refactoring.nvim",
-    requires = {
-        {"nvim-lua/plenary.nvim"},
-        {"nvim-treesitter/nvim-treesitter"}
-    }
+    "AckslD/nvim-neoclip.lua",
+    config = function()
+        require 'neoclip'.setup {}
+    end,
 }
 
 use({
     "nvim-telescope/telescope.nvim",
-    config = function ()
+    config = function()
         local tel = require('telescope')
         local actions = require('telescope.actions')
         tel.setup({
@@ -20,18 +17,17 @@ use({
                 mappings = {
                     n = {
                         ["s"] = actions.select_horizontal,
-                        ["S"] = actions.select_vertical,
+                        ["v"] = actions.select_vertical,
                     }
                 },
                 layout_strategies = 'horizontal',
                 layout_config = {
-                    width = 0.7,
-                    height = 0.8,
+                    width = 0.5,
+                    height = 0.6,
                     prompt_position = 'top'
                 }
             }
         })
-        tel.load_extension('refactoring')
-        tel.load_extension('lazygit')
+        tel.load_extension("neoclip")
     end
 })
