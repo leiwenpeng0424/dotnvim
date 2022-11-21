@@ -32,6 +32,7 @@ function pack.load_plugins()
     local plug_files = get_plugs_list()
 
     for _, p in ipairs(plug_files) do
+        -- vim.notify(p:sub(0, #p - 4))
         require(p:sub(0, #p - 4))
     end
 end
@@ -54,7 +55,7 @@ function pack.load_packer()
             end,
         },
     })
-    packer.reset()
+    -- packer.reset()
 
     packer.use({ "nvim-lua/plenary.nvim" })
     packer.use({ "wbthomason/packer.nvim" })

@@ -1,7 +1,7 @@
 local keymap_bind = require('core.utils').keymap_bind
 
 local mappings = {
-    ['Q|:wqa<cr>'] = { mode = 'n', opts = { noremap = true } },
+    ['Q|:wqa<cr>']        = { mode = 'n', opts = { noremap = true } },
     -- save with ctrl + s, V/I mode
     ['<c-s>|:w<cr>']      = { mode = '', opts = { noremap = true } },
     ['<c-s>|<C-o>:w<cr>'] = { mode = 'i', opts = { noremap = true } },
@@ -15,7 +15,6 @@ local mappings = {
     ['j|gj'] = { mode = 'n', opts = { noremap = true } },
     ['k|gk'] = { mode = 'n', opts = { noremap = true } },
 
-    -- copy to system clipboard
     ['<c-c>|"+y'] = { mode = 'n', opts = { noremap = true } },
 
     -- paste from system clipboard with ctrl + v
@@ -30,12 +29,16 @@ local mappings = {
     ['y|y`]'] = { mode = 'v', opts = { noremap = true } },
 
     -- Move selected lines up and down
-    ["<c-j>|:m '>+1<cr>gv=gv"]     = { mode = 'v', opts = { noremap = true } },
-    ["<c-k>|:m '<-2<cr>gv=gv"]     = { mode = 'v', opts = { noremap = true } },
-    ["_|<c-w>5<"]                  = { mode = 'n', opts = { noremap = true } },
-    ['+|<c-w>5>']                  = { mode = 'n', opts = { noremap = true } },
-    ['{|:resize -5<cr>']           = { mode = 'n', opts = { noremap = true } },
-    ['}|:resize +5<cr>']           = { mode = 'n', opts = { noremap = true } },
+    ["<c-j>|:m '>+1<cr>gv=gv"] = { mode = 'v', opts = { noremap = true } },
+    ["<c-k>|:m '<-2<cr>gv=gv"] = { mode = 'v', opts = { noremap = true } },
+
+    -- Window resize
+    ["_|<c-w>5<"]        = { mode = 'n', opts = { noremap = true } },
+    ['+|<c-w>5>']        = { mode = 'n', opts = { noremap = true } },
+    ['{|:resize -5<cr>'] = { mode = 'n', opts = { noremap = true } },
+    ['}|:resize +5<cr>'] = { mode = 'n', opts = { noremap = true } },
+
+    -- neo-tree.nvim
     ['<c-b>|<cmd>NeoTreeShow<cr>'] = { mode = 'n', opts = { noremap = true } },
     ['<leader>b|<cmd>Neotree<cr>'] = { mode = 'n', opts = { noremap = true } },
 
@@ -52,7 +55,7 @@ local mappings = {
     ["<F2>|<cmd>Lspsaga rename<cr>"]                                  = { mode = 'n', opts = { noremap = true } },
     ["<leader>fm|<cmd>:lua vim.lsp.buf.format({ async = true })<cr>"] = { mode = 'n' },
 
-    -- move cursor
+    -- move cursor between
     ['<leader><Down>|<c-w>j']  = { mode = 'n', opts = { noremap = true } },
     ['<leader><Left>|<c-w>h']  = { mode = 'n', opts = { noremap = true } },
     ['<leader><Right>|<c-w>l'] = { mode = 'n', opts = { noremap = true } },

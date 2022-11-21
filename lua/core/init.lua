@@ -5,8 +5,9 @@ function load()
     pack.ensure_packer_installed()
     pack.load_compile()
     require('core.keymap')
-    vim.cmd[[set background=dark]]
-    vim.cmd[[colorscheme tokyonight]] -- enfocado
+    vim.cmd [[set background=dark]]
+    vim.cmd [[set whichwrap+=<,>,[,]]
+    vim.cmd [[colorscheme tokyonight]] -- enfocado
 end
 
 load()
