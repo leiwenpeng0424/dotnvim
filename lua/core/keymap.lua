@@ -1,7 +1,8 @@
 local keymap_bind = require('core.utils').keymap_bind
 
 local mappings = {
-    ['Q|:wqa<cr>']        = { mode = 'n', opts = { noremap = true } },
+    ['Q|:wq<cr>']        = { mode = 'n', opts = { noremap = true } },
+    ['Qa|:wqa<cr>']        = { mode = 'n' },
     -- save with ctrl + s, V/I mode
     ['<c-s>|:w<cr>']      = { mode = '', opts = { noremap = true } },
     ['<c-s>|<C-o>:w<cr>'] = { mode = 'i', opts = { noremap = true } },
