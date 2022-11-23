@@ -11,6 +11,26 @@ use({
             args = { os.getenv("HOME") .. "/dev/microsoft/vscode-node-debug2/out/src/nodeDebug.js" }
         }
 
+        dap.adapters.chrome = {
+            type = "executable",
+            command = "node",
+            args = {
+                os.getenv("HOME") .. "/dev/microsoft/vscode-chrome-debug/out/src/chromeDebug.js"
+            }
+        }
+
+        dap.configurations.typescript = {
+            {
+                name = "Debug (Attach) - Remote",
+                type = "chrome",
+                request = "attach",
+                sourceMaps = true,
+                trace = true,
+                port = 9222,
+                webRoot = "${workspaceFolder}"
+            }
+        }
+
         dap.configurations.javascript = {
             {
                 name = "Launch",
