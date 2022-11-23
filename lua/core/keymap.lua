@@ -75,15 +75,15 @@ local mappings = {
     ['b>|<cmd>BufferMoveNext<cr>']      = { mode = 'n', opts = { noremap = true } },
     ['bP|<cmd>BufferPick<cr>']          = { mode = 'n', opts = { noremap = false } },
 
-    -- nvim-terminal
+    -- trouble.nvim
     ['<leader>t|<cmd>TroubleToggle<cr>'] = {
         mode = 'n', opts = { noremap = true }
     },
-    ['<leader>-|<cmd>:lua NTGlobal["window"]:change_height(+2)<cr>'] = { mode = 'n', opts = { noremap = true } },
-    ['<leader>+|<cmd>:lua NTGlobal["window"]:change_height(-2)<cr>'] = { mode = 'n', opts = { noremap = true } },
+    -- ['<leader>-|<cmd>:lua NTGlobal["window"]:change_height(+2)<cr>'] = { mode = 'n', opts = { noremap = true } },
+    -- ['<leader>+|<cmd>:lua NTGlobal["window"]:change_height(-2)<cr>'] = { mode = 'n', opts = { noremap = true } },
 
     -- lazygit
-    ['gg|<cmd>LazyGit<cr>'] = { mode = 'n', opts = { noremap = true } },
+    -- ['gg|<cmd>LazyGit<cr>'] = { mode = 'n', opts = { noremap = true } },
 
     -- aerial
     ['<leader>a|<cmd>AerialToggle!<cr>'] = { mode = 'n', opts = { noremap = true } },

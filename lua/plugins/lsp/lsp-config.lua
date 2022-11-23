@@ -9,7 +9,7 @@ use({
                 icons = {
                     package_pending = " ",
                     package_installed = " ",
-                    package_uninstalled = " ﮊ",
+                    package_uninstalled = "ﮊ ",
                 }
             },
             max_concurrent_installers = 10,
