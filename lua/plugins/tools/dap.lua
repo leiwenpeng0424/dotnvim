@@ -19,7 +19,7 @@ use({
             }
         }
 
-        dap.configurations.typescript = {
+        local tscfg = {
             {
                 name = "Debug (Attach) - Remote",
                 type = "chrome",
@@ -30,6 +30,9 @@ use({
                 webRoot = "${workspaceFolder}"
             }
         }
+
+        dap.configurations.typescript = tscfg
+        dap.configurations.typescriptreact = tscfg
 
         dap.configurations.javascript = {
             {
