@@ -9,6 +9,7 @@ use {
 
 use({
     "nvim-telescope/telescope.nvim",
+    requires = { { "nvim-lua/plenary.nvim" } },
     config = function()
         local tel = require('telescope')
         local actions = require('telescope.actions')

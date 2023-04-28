@@ -45,7 +45,7 @@ local mappings = {
 
     -- lspsaga
     ['gf|<cmd>Lspsaga lsp_finder<cr>']                                = { mode = 'n', opts = { noremap = true } },
-    ['gs|<cmd>Lspsaga signature_help<cr>']                            = { mode = 'n', opts = { noremap = true } },
+    -- ['gs|<cmd>Lspsaga signature_help<cr>']                            = { mode = 'n', opts = { noremap = true } },
     ['d[|<cmd>Lspsaga diagnostic_jump_prev<cr>']                      = { mode = 'n', opts = { noremap = true } },
     ['d]|<cmd>Lspsaga diagnostic_jump_next<cr>']                      = { mode = 'n', opts = { noremap = true } },
     ['gr|<cmd>Lspsaga rename<cr>']                                    = { mode = 'n', opts = { noremap = true } },
@@ -83,7 +83,7 @@ local mappings = {
     -- ['<leader>+|<cmd>:lua NTGlobal["window"]:change_height(-2)<cr>'] = { mode = 'n', opts = { noremap = true } },
 
     -- lazygit
-    -- ['gg|<cmd>LazyGit<cr>'] = { mode = 'n', opts = { noremap = true } },
+    ['gg|<cmd>LazyGit<cr>'] = { mode = 'n', opts = { noremap = true } },
 
     -- aerial
     ['<leader>a|<cmd>AerialToggle!<cr>'] = { mode = 'n', opts = { noremap = true } },
@@ -111,4 +111,4 @@ local mappings = {
     }
 }
 
-keymap_bind(mappings)
+keymap_bind(mappings) 
