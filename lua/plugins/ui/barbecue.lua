@@ -11,7 +11,7 @@ use {
             create_autocmd = true,
             exclude_filetypes = { "dashboard", "toggleterm" },
             symbols = {
-                separator = "➲"
+                separator = "⇒"
             },
             kinds = {
                 Package = "",

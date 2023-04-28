@@ -23,19 +23,14 @@ use({
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "dockerls",
-                "dotls",
                 "eslint",
-                "graphql",
                 "html",
                 "jsonls",
                 "tsserver",
-                "sumneko_lua",
                 "rust_analyzer",
                 "taplo", -- toml
-                "tsserver",
                 "vimls",
                 "yamlls",
-                "volar"
             },
             automatic_installation = true,
         })
@@ -66,17 +61,13 @@ use({
         if not cmp then
             vim.cmd([[packadd cmp-nvim-lsp]])
         end
-
         local capabilities = vim.lsp.protocol.make_client_capabilities()
-
         capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
         local function on_attach(client, bufnr)
             if client.server_capabilities["documentSymbolProvider"] then
                 require "nvim-navic".attach(client, bufnr)
             end
         end
-
         for _, server in ipairs(mason_lsp.get_installed_servers()) do
             if server == "sumneko_lua" then
                 nvim_lsp.sumneko_lua.setup({

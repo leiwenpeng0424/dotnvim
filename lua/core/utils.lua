@@ -22,7 +22,7 @@ function M.set_options(options)
     end
 end
 
-function M.load_plugins(module)
+function M.load_plurirs(module)
     local get_plugs_list = function ()
         local repos = {}
         local temp = vim.split(
@@ -35,6 +35,8 @@ function M.load_plugins(module)
 
         return repos
     end
+
+    get_plugs_list();
 end
 
 return M

@@ -7,7 +7,6 @@ use({
         rt.setup {
             server = {
                 on_attach = function(_, bufnr)
-
                     vim.keymap.set(
                         'n',
                         '<C-space>',
@@ -25,7 +24,6 @@ use({
                         }
                     )
                 end
-
             }
         }
     end

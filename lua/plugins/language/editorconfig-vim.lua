@@ -1,3 +1,3 @@
 local use = require("packer").use
 
-use({ "editorconfig/editorconfig-vim", })
+use({ "editorconfig/editorconfig-vim" })

@@ -1,4 +1,4 @@
-local fn, uv, api = vim.fn, vim.loop, vim.api
+local fn, loop, api = vim.fn, vim.loop, vim.api
 local paths = require("core.global").paths
 
 local packer = nil
@@ -6,7 +6,7 @@ local packer = nil
 local pack = {}
 
 function pack.ensure_packer_installed()
-    local stat = uv.fs_stat(paths.packer_path)
+    local stat = loop.fs_stat(paths.packer_path)
     if not stat then
         local cmd = '!git clone git@github.com:wbthomason/packer.nvim.git ' .. paths.packer_path
         api.nvim_command(cmd)
@@ -16,14 +16,14 @@ function pack.ensure_packer_installed()
 end
 
 function pack.load_plugins()
-    local get_plugs_list = function ()
+    local get_plugs_list = function()
         local repos = {}
         local temp = vim.split(
             fn.globpath(paths.plugs_path, '*/*.lua'), '\n'
         )
 
         for _, file in ipairs(temp) do
-            repos[#repos+1] = file:sub(#paths.nvim_config_path + 6, -1)
+            repos[#repos + 1] = file:sub(#paths.nvim_config_path + 6, -1)
         end
 
         return repos
@@ -70,11 +70,11 @@ function pack.load_compile()
     end
 
     vim.cmd([[command! PackerCompile lua require('packer').compile()]])
-	vim.cmd([[command! PackerInstall lua require('packer').install()]])
-	vim.cmd([[command! PackerUpdate lua require('packer').update()]])
-	vim.cmd([[command! PackerSync lua require('packer').sync()]])
-	vim.cmd([[command! PackerClean lua require('packer').clean()]])
-	vim.cmd([[command! PackerStatus lua require('packer').compile() require('packer').status()]])
+    vim.cmd([[command! PackerInstall lua require('packer').install()]])
+    vim.cmd([[command! PackerUpdate lua require('packer').update()]])
+    vim.cmd([[command! PackerSync lua require('packer').sync()]])
+    vim.cmd([[command! PackerClean lua require('packer').clean()]])
+    vim.cmd([[command! PackerStatus lua require('packer').compile() require('packer').status()]])
 end
 
 return pack

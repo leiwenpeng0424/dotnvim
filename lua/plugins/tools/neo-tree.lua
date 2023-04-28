@@ -19,10 +19,9 @@ use({
                         -- filter using buffer options
                         bo = {
                             -- if the file type is one of following, the window will be ignored
-                            filetype = { 'neo-tree', "neo-tree-popup", "notify" },
-
+                            filetype = { 'neo-tree', "neo-tree-popup", "notify", "toggleterm" },
                             -- if the buffer type is one of following, the window will be ignored
-                            buftype = { 'terminal', "quickfix" },
+                            buftype = { 'terminal', "quickfix", "toggleterm" },
                         },
                     },
                     other_win_hl_color = '#e35e4f',
@@ -45,8 +44,8 @@ use({
                     padding = 1, -- extra padding on left hand side
                     -- indent guides
                     with_markers = true,
-                    indent_marker = "│",
-                    last_indent_marker = "└",
+                    -- indent_marker = "│",
+                    -- last_indent_marker = "└",
                     highlight = "NeoTreeIndentMarker",
                     -- expander config, needed for nesting files
                     with_expanders = nil, -- if nil and file nesting is enabled, will enable expanders
@@ -96,16 +95,16 @@ use({
                     nowait = true,
                 },
                 mappings = {
-                    ["<space>"] = {
-                        "toggle_node",
-                        nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
-                    },
-                    ["<2-LeftMouse>"] = "open",
+                    -- ["<space>"] = {
+                    -- "toggle_node",
+                    -- nowait = false, -- disable `nowait` if you have existing combos starting with this char that you want to use
+                    -- },
+                    -- ["<2-LeftMouse>"] = "open",
                     ["<cr>"] = "open",
-                    ["v"] = "open_split",
+                    ["S"] = "open_split",
                     ["V"] = "open_vsplit",
-                    -- ["S"] = "split_with_window_picker",
-                    -- ["s"] = "vsplit_with_window_picker",
+                    ["s"] = "split_with_window_picker",
+                    ["v"] = "vsplit_with_window_picker",
                     ["t"] = "open_tabnew",
                     ["w"] = "open_with_window_picker",
                     ["C"] = "close_node",

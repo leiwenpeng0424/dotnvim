@@ -2,14 +2,9 @@
 
 local use = require("packer").use
 
-use({
-    'JoosepAlviste/nvim-ts-context-commentstring'
-})
-
+use({ 'JoosepAlviste/nvim-ts-context-commentstring' })
 use({ 'mfussenegger/nvim-ts-hint-textobject' })
-
 use({ 'nvim-treesitter/nvim-tree-docs' })
-
 use({
     "windwp/nvim-ts-autotag",
     config = function ()
