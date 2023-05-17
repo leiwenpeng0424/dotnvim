@@ -1,13 +1,10 @@
 -- nvim-lualine/lualine.nvim
 -- kyazdani42/nvim-web-devicons
-
 local use = require("packer").use
 
 use({
     "nvim-lualine/lualine.nvim",
-    requires = {
-        { "kyazdani42/nvim-web-devicons" }
-    },
+    requires = { { "kyazdani42/nvim-web-devicons" } },
     config = function()
         require('lualine').setup {
             options = {
@@ -17,15 +14,12 @@ use({
                 section_separators = { left = ' ', right = ' ' },
                 disabled_filetypes = {
                     statusline = {
-                        "neo-tree",
-                        "Trouble",
-                        "aerial",
-                        "alpha",
-                        "dashboard", "lspsagaoutline", "toggleterm"
+                        "neo-tree", "Trouble", "aerial", "alpha", "dashboard",
+                        "lspsagaoutline", "toggleterm"
                     }
                 },
                 always_divide_middle = true,
-                globalstatus = false,
+                globalstatus = false
             },
             sections = {
                 lualine_a = {
@@ -34,11 +28,7 @@ use({
                 lualine_b = { 'branch', 'diff', 'diagnostics' },
                 lualine_c = {
                     -- 'filename',
-                    {
-                        'filesize',
-                        icon = '',
-                        color = { gui = 'bold' }
-                    }
+                    { 'filesize', icon = '', color = { gui = 'bold' } }
                 },
                 lualine_x = { 'encoding', 'fileformat', 'filetype' },
                 lualine_y = { 'progress' },

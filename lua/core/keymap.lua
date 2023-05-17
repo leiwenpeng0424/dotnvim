@@ -111,4 +111,4 @@ local mappings = {
     }
 }
 
-keymap_bind(mappings) 
+keymap_bind(mappings)

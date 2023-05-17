@@ -6,6 +6,7 @@ use {
         "nvim-lua/plenary.nvim",
         "nvim-treesitter/nvim-treesitter",
         "antoinemadec/FixCursorHold.nvim",
+        "nvim-neotest/neotest",
         "haydenmeade/neotest-jest",
         "rouge8/neotest-rust"
     },

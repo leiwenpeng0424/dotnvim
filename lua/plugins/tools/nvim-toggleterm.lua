@@ -8,7 +8,7 @@ use({
     config = function()
         require("toggleterm").setup({
             open_mapping = [[;;]],
-            direction = 'horizontal', -- 'vertical' | 'horizontal' | 'tab' | 'float'
+            direction = 'float', -- 'vertical' | 'horizontal' | 'tab' | 'float'
             insert_mappings = true,
         })
     end
