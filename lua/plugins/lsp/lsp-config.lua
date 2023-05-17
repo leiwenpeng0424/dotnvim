@@ -8,8 +8,8 @@ use({
                 border = "single",
                 icons = {
                     package_pending = " ",
-                    package_installed = " ",
-                    package_uninstalled = "ﮊ ",
+                    package_installed = " ",
+                    package_uninstalled = " ",
                 }
             },
             max_concurrent_installers = 10,

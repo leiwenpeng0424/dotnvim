@@ -2,7 +2,7 @@ local use = require("packer").use
 
 use({
     "hrsh7th/nvim-cmp",
-    as = 'cmp',
+    as = "cmp",
     requires = {
         { "lukas-reineke/cmp-under-comparator" },
         { "saadparwaiz1/cmp_luasnip" },
@@ -16,10 +16,10 @@ use({
         {
             "L3MON4D3/LuaSnip",
             tag = "v<CurrentMajor>.*",
-            config = function ()
-                require "luasnip.loader.form_snipmate".load({ "./my-snippets" })
-            end
-        }
+            config = function()
+                require("luasnip.loader.form_snipmate").load({ "./my-snippets" })
+            end,
+        },
     },
     config = function()
         local t = function(str)
@@ -54,9 +54,7 @@ use({
                     border = border("CmpBorder"),
                     winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
                 },
-                documentation = {
-                    border = border("CmpDocBorder"),
-                },
+                documentation = { border = border("CmpDocBorder") },
             },
             sorting = {
                 comparators = {
@@ -74,31 +72,41 @@ use({
             formatting = {
                 format = function(entry, vim_item)
                     local lspkind_icons = {
+                        Package = "",
+                        Namespace = "{}",
+                        Macro = "#",
+                        Null = "󰟢",
+                        Boolean = "",
+                        Number = "",
+                        String = "韛",
+                        Key = "",
+                        Array = "󰅨",
+                        Object = "",
                         Text = "",
-                        Method = "",
-                        Function = "",
+                        Method = "",
+                        Function = "󰊕",
                         Constructor = "",
-                        Field = "",
-                        Variable = "",
-                        Class = "ﴯ",
+                        Field = "",
+                        Variable = "󱄑",
+                        Class = "",
                         Interface = "",
                         Module = "",
-                        Property = "ﰠ",
+                        Property = "",
                         Unit = "",
                         Value = "",
                         Enum = "",
-                        Keyword = "",
+                        Keyword = "",
                         Snippet = "",
                         Color = "",
-                        File = "",
+                        File = "",
                         Reference = "",
-                        Folder = "",
+                        Folder = "",
                         EnumMember = "",
                         Constant = "",
                         Struct = "",
                         Event = "",
-                        Operator = "",
-                        TypeParameter = "",
+                        Operator = "",
+                        TypeParameter = "",
                     }
                     -- load lspkind icons
                     vim_item.kind = string.format("%s %s", lspkind_icons[vim_item.kind], vim_item.kind)
@@ -128,14 +136,16 @@ use({
                 ["<C-e>"] = cmp.mapping.close(),
                 ["<CR>"] = cmp.mapping.confirm({
                     select = false,
-                    behavior = cmp.ConfirmBehavior.Replace
+                    behavior = cmp.ConfirmBehavior.Replace,
                 }),
                 ["<Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible() then
                         cmp.select_next_item()
                     elseif require("luasnip").expand_or_jumpable() then
-                        vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true)
-                            , "")
+                        vim.fn.feedkeys(
+                            vim.api.nvim_replace_termcodes("<Plug>luasnip-expand-or-jump", true, true, true),
+                            ""
+                        )
                     else
                         fallback()
                     end
@@ -183,7 +193,7 @@ use({
                 { name = "crates" },
             },
         })
-    end
+    end,
 })
 
 use({
@@ -229,5 +239,5 @@ use({
                 },
             })
         )
-    end
+    end,
 })

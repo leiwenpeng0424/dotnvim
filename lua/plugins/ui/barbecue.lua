@@ -1,55 +1,50 @@
 local use = require("packer").use
 
-use {
+use({
     "utilyre/barbecue.nvim",
-    requires = {
-        "neovim/nvim-lspconfig",
-        "smiteshp/nvim-navic",
-    },
+    requires = { "neovim/nvim-lspconfig", "smiteshp/nvim-navic" },
     config = function()
-        require "barbecue".setup {
+        require("barbecue").setup({
             create_autocmd = true,
             exclude_filetypes = { "dashboard", "toggleterm" },
-            symbols = {
-                separator = "⇒"
-            },
+            symbols = { separator = "▸" },
             kinds = {
                 Package = "",
                 Namespace = "{}",
                 Macro = "#",
-                Null = "ﳠ",
-                Boolean = "﨡",
-                Number = "",
+                Null = "󰟢",
+                Boolean = "",
+                Number = "",
                 String = "韛",
-                Key = "",
-                Array = "",
+                Key = "",
+                Array = "󰅨",
                 Object = "",
                 Text = "",
-                Method = "",
-                Function = "",
+                Method = "",
+                Function = "󰊕",
                 Constructor = "",
-                Field = "",
-                Variable = "",
-                Class = "ﴯ",
+                Field = "",
+                Variable = "󱄑",
+                Class = "",
                 Interface = "",
                 Module = "",
-                Property = "ﰠ",
+                Property = "",
                 Unit = "",
                 Value = "",
                 Enum = "",
-                Keyword = "",
+                Keyword = "",
                 Snippet = "",
                 Color = "",
-                File = "",
+                File = "",
                 Reference = "",
-                Folder = "",
+                Folder = "",
                 EnumMember = "",
                 Constant = "",
                 Struct = "",
                 Event = "",
-                Operator = "",
-                TypeParameter = "",
-            }
-        }
-    end
-}
+                Operator = "",
+                TypeParameter = "",
+            },
+        })
+    end,
+})

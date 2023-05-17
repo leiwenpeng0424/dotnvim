@@ -1,25 +1,18 @@
 -- catppuccin/nvim
 local use = require("packer").use
 
-use {
+use({
     "catppuccin/nvim",
     as = "catppuccin",
     config = function()
-        require("catppuccin").setup {
-            flavour = 'frappe',
-            transparent_background = false,
-            background = {
-                light = 'latte',
-                dark  = "frappe"
-            },
-            dim_inactive = {
-                enable = true,
-                shade = "dark",
-                percentage = 0.35
-            },
+        require("catppuccin").setup({
+            flavour = "Mocha",
+            transparent_background = true,
+            background = { light = "latte", dark = "Mocha" },
+            dim_inactive = { enable = true, shade = "dark", percentage = 0.35 },
             integrations = {
-                aerial = false,
-                barbar = false,
+                aerial = true,
+                barbar = true,
                 beacon = false,
                 cmp = true,
                 coc_nvim = false,
@@ -33,16 +26,16 @@ use {
                 illuminate = false,
                 leap = false,
                 lightspeed = false,
-                lsp_saga = false,
+                lsp_saga = true,
                 lsp_trouble = false,
                 markdown = true,
                 mason = true,
                 mini = false,
                 neogit = false,
-                neotest = false,
-                neotree = false,
+                neotest = true,
+                neotree = true,
                 noice = false,
-                notify = false,
+                notify = true,
                 nvimtree = true,
                 overseer = false,
                 pounce = false,
@@ -51,19 +44,16 @@ use {
                 telekasten = false,
                 telescope = true,
                 treesitter = true,
-                treesitter_context = false,
+                treesitter_context = true,
                 ts_rainbow = false,
                 vim_sneak = false,
                 vimwiki = false,
                 which_key = false,
                 -- Special integrations, see https://github.com/catppuccin/nvim#special-integrations
-                dap = {
-                    enabled = false,
-                    enable_ui = false,
-                },
+                dap = { enabled = true, enable_ui = true },
                 indent_blankline = {
                     enabled = true,
-                    colored_indent_levels = false,
+                    colored_indent_levels = true,
                 },
                 native_lsp = {
                     enabled = true,
@@ -80,11 +70,8 @@ use {
                         information = { "underline" },
                     },
                 },
-                navic = {
-                    enabled = false,
-                    custom_bg = "NONE",
-                },
+                navic = { enabled = false, custom_bg = "NONE" },
             },
-        }
+        })
     end,
-}
+})
