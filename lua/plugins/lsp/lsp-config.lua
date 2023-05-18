@@ -3,18 +3,18 @@ local use = require("packer").use
 use({
     "williamboman/mason.nvim",
     config = function()
-        require("mason").setup {
+        require("mason").setup({
             ui = {
                 border = "single",
                 icons = {
                     package_pending = " ",
                     package_installed = " ",
                     package_uninstalled = " ",
-                }
+                },
             },
             max_concurrent_installers = 10,
-        }
-    end
+        })
+    end,
 })
 
 use({
@@ -34,14 +34,14 @@ use({
             },
             automatic_installation = true,
         })
-    end
+    end,
 })
 
 use({
     "stevearc/aerial.nvim",
     config = function()
-        require('aerial').setup({})
-    end
+        require("aerial").setup({})
+    end,
 })
 
 use({
@@ -51,21 +51,27 @@ use({
         local mason_lsp = require("mason-lspconfig")
 
         -- diagnostics signs in gutter
-        local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+        local signs = {
+            Error = " ",
+            Warn = " ",
+            Hint = " ",
+            Info = " ",
+        }
         for type, icon in pairs(signs) do
             local hl = "DiagnosticSign" .. type
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
         end
 
-        local cmp = pcall(require, 'cmp_nvim_lsp');
+        local cmp = pcall(require, "cmp_nvim_lsp")
+
         if not cmp then
             vim.cmd([[packadd cmp-nvim-lsp]])
         end
         local capabilities = vim.lsp.protocol.make_client_capabilities()
-        capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+        capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
         local function on_attach(client, bufnr)
             if client.server_capabilities["documentSymbolProvider"] then
-                require "nvim-navic".attach(client, bufnr)
+                require("nvim-navic").attach(client, bufnr)
             end
         end
         for _, server in ipairs(mason_lsp.get_installed_servers()) do
@@ -94,7 +100,7 @@ use({
                     on_attach = on_attach,
                     settings = {
                         json = {
-                            schemas = require('schemastore').json.schemas(),
+                            schemas = require("schemastore").json.schemas(),
                             validate = { enable = true },
                         },
                     },
@@ -106,5 +112,5 @@ use({
                 })
             end
         end
-    end
+    end,
 })
