@@ -23,11 +23,11 @@ use({
             minimum_width = 50,
             ---@usage Icons for the different levels
             icons = {
-                ERROR = "",
-                WARN = "",
-                INFO = "",
-                DEBUG = "",
-                TRACE = "✎",
+                ERROR = " ",
+                WARN = " ",
+                INFO = " ",
+                DEBUG = " ",
+                TRACE = "✎ ",
             },
         })
         vim.notify = notify
