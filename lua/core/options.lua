@@ -14,7 +14,7 @@ local options = {
     -- auto code folding when openeing new file at level 1
     foldlevelstart = 4,
     -- don't wrap the text when lines can't fit the window
-    wrap = true,
+    wrap = false,
     -- auto wrap after 80 characters in the line
     textwidth = 80,
     -- enable mouse in vim. 'a' for all modes (normal, visual, insert & command)
